@@ -1,0 +1,47 @@
+.elements {
+  color: #000;
+}
+
+.elements__wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 282px);
+  grid-template-rows: repeat(2, 361px);
+  row-gap: 20px;
+  column-gap: 17px;
+}
+
+.elements__item {
+  position: relative;
+  background-color: #fff;
+  /* border-radius: 10%; */
+  border-radius: 5%;
+}
+
+.elements__image {
+  /* position: relative;
+  z-index: -1; */
+  /* border-top-left-radius: 10%;
+  border-top-right-radius: 10%; */
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
+  height: 282px;
+  width: 282px;
+}
+
+.elements__name {
+  margin-top: 25px;
+  margin-left: 20px;
+  margin-bottom: 25px;
+}
+.elements__like-button {
+  position: absolute;
+  right: 20px;
+  bottom: 30px;
+  width: 20px;
+  height: 18px;
+  background: url(../images/card-heart.svg) center no-repeat;
+  background-size: 18px 21px;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
