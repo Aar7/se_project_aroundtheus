@@ -17,3 +17,9 @@
   align-items: center;
   padding: 45px 200px 60px;
 }
+
+@media screen and (max-width: 320px) {
+  .page__content {
+    padding: 28px 19px 36px;
+  }
+}

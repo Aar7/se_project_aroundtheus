@@ -5,4 +5,19 @@
 
 .footer__copyright {
   margin: 0;
+  font-family: "Inter", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: auto;
+  color: #545454;
+}
+
+@media screen and (max-width: 320px) {
+  .footer {
+    margin: 0;
+  }
+
+  .footer__copyright {
+    font-size: 14px;
+  }
 }

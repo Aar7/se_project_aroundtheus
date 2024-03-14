@@ -4,26 +4,21 @@
 
 .elements__wrapper {
   display: grid;
-  grid-template-columns: repeat(3, 282px);
+  grid-template-columns: repeat(auto-fit, 282px);
   grid-template-rows: repeat(2, 361px);
-  row-gap: 20px;
-  column-gap: 17px;
+  grid-gap: 20px 17px;
+  margin-bottom: 48px;
 }
 
 .elements__item {
   position: relative;
   background-color: #fff;
   /* border-radius: 10%; */
-  border-radius: 5%;
+  border-radius: 10px;
 }
 
 .elements__image {
-  /* position: relative;
-  z-index: -1; */
-  /* border-top-left-radius: 10%;
-  border-top-right-radius: 10%; */
-  border-top-left-radius: 5%;
-  border-top-right-radius: 5%;
+  border-radius: 10px 10px 0 0;
   height: 282px;
   width: 282px;
 }
@@ -32,6 +27,16 @@
   margin-top: 25px;
   margin-left: 20px;
   margin-bottom: 25px;
+  font-family: "Inter", "Arial", sans-serif;
+  font-weight: 950;
+  font-size: 24px;
+  line-height: auto;
+
+  max-width: calc(100% - 89px);
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .elements__like-button {
   position: absolute;
@@ -44,4 +49,43 @@
   border: none;
   padding: 0;
   margin: 0;
+
+  transition: opacity 0.5s ease-out;
+}
+
+.elements__like-button:hover {
+  opacity: 0.5;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 320px) {
+  .elements__wrapper {
+    grid-gap: 20px;
+  }
+
+  .elements__item {
+    background-color: #fff;
+    border-radius: 10px;
+  }
+
+  .elements__image {
+    border-radius: 10px 10px 0 0;
+    height: 282px;
+    width: 282px;
+  }
+
+  .elements__like-button {
+    position: absolute;
+    right: 20px;
+    bottom: 30px;
+    width: 20px;
+    height: 18px;
+    background: url(../images/card-heart.svg) center no-repeat;
+    background-size: 18px 21px;
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    transition: opacity 0.5s ease-out;
+  }
 }

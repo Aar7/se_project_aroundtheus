@@ -1,2 +1,7 @@
 .content {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  max-width: 880px;
+  width: 100%;
 }

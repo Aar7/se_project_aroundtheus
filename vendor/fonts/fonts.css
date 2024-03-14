@@ -1,0 +1,30 @@
+/*
+100	Thin (Hairline)
+200	Extra Light (Ultra Light)
+300	Light
+400	Normal (Regular)
+500	Medium
+600	Semi Bold (Demi Bold)
+700	Bold
+800	Extra Bold (Ultra Bold)
+900	Black (Heavy)
+950	Extra Black (Ultra Black)
+*/
+
+@font-face {
+  src: url(Inter-Regular.woff2) format("woff2");
+  font-family: "Inter";
+  font-weight: normal;
+}
+
+@font-face {
+  src: url(Inter-Black.woff2) format("woff2");
+  font-family: "Inter";
+  font-weight: 950;
+}
+
+@font-face {
+  src: url(Inter-Medium.woff2) format("woff2");
+  font-family: "Inter";
+  font-weight: 500;
+}
