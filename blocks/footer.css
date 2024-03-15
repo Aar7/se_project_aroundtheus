@@ -1,6 +1,8 @@
 .footer {
-  align-self: start;
-  margin-top: 67px;
+  /* align-self: start; */
+  max-width: 880px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .footer__copyright {
@@ -8,10 +10,11 @@
   font-family: "Inter", "Arial", sans-serif;
   font-weight: 400;
   font-size: 18px;
-  line-height: auto;
+  line-height: 1em;
   color: #545454;
 }
 
+/* MEDIA QUERIES */
 @media screen and (max-width: 320px) {
   .footer {
     margin: 0;
