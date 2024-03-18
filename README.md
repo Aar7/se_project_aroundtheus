@@ -40,4 +40,4 @@ Where text may overflow their containers, special rules were implemented to ensu
 1. Cleaned up duplicate code in media queries
 2. Ensured font and design stylings were up to specifications
 3. Ensured that layout specifications were met
-4. Created a video of the
+4. Created a video overviewing the project and demonstrating its functions
