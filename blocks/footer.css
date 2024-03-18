@@ -1,5 +1,4 @@
 .footer {
-  /* align-self: start; */
   max-width: 880px;
   margin: 0 auto;
   width: 100%;
@@ -10,17 +9,20 @@
   font-family: "Inter", "Arial", sans-serif;
   font-weight: 400;
   font-size: 18px;
-  line-height: 1em;
+  line-height: 22px;
   color: #545454;
 }
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 320px) {
+/* 320px */
+@media screen and (max-width: 637px) {
   .footer {
     margin: 0;
   }
 
   .footer__copyright {
     font-size: 14px;
+    line-height: 15px;
+    padding: 0 19px;
   }
 }

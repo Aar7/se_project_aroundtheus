@@ -1,5 +1,6 @@
 .elements {
   color: #000;
+  margin: 0;
 }
 
 .elements__list {
@@ -13,60 +14,16 @@
   list-style-type: none;
 }
 
-.element {
-  background-color: #fff;
-  border-radius: 10px;
-  line-height: 0;
-}
-
-.element__image {
-  border-radius: 10px 10px 0 0;
-  height: 282px;
-  width: 282px;
-}
-
-.element__info {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 20px;
-}
-
-.element__name {
-  font-family: "Inter", "Arial", sans-serif;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 1.2;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.element__like-button {
-  width: 21px;
-  height: 18px;
-  background: url(../images/card-heart.svg) center no-repeat;
-  background-size: 18px 21px;
-  border: none;
-  padding: 0;
-  /* margin: 31px 0 30px; */
-
-  transition: opacity 0.5s ease-out;
-
-  cursor: pointer;
-}
-
-.element__like-button:hover {
-  opacity: 0.5;
-}
-
 /* MEDIA QUERIES */
-@media screen and (max-width: 320px) {
+/* 320px */
+@media screen and (max-width: 637px) {
   .elements {
     margin-bottom: 48px;
     margin-left: 19px;
     margin-right: 19px;
+  }
+
+  .elements__list {
+    margin-bottom: 0;
   }
 }
