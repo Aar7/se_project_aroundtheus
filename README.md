@@ -37,7 +37,15 @@ Where text may overflow their containers, special rules were implemented to ensu
 
 **_Recent changes_**
 
+_Major_
+
 1. Cleaned up duplicate code in media queries
 2. Ensured font and design stylings were up to specifications
 3. Ensured that layout specifications were met
 4. Created a video overviewing the project and demonstrating its functions
+
+5. Added script.js
+
+_Minor_
+
+1. Reset default margins for the card headings.
