@@ -1,0 +1,149 @@
+@keyframes modal__close {
+  0% {
+    top: -48px;
+    right: -48px;
+  }
+
+  100% {
+    right: 0px;
+    top: -53px;
+  }
+}
+
+.modal {
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: auto;
+  padding: 0 19px 0;
+}
+
+.modal_opened {
+  display: flex;
+}
+
+.modal__container {
+  position: relative;
+  width: 430px;
+  background-color: #fff;
+  padding: 34px 36px 37px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.modal__header {
+  margin: 0 0 54px 0;
+  color: #000;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.modal__close {
+  position: absolute;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  top: -48px;
+  right: -48px;
+  background: url(../images/modal_close.svg) center no-repeat;
+  background-size: 40px 40px;
+  border: 0;
+  transition: opacity 0.5s linear;
+  cursor: pointer;
+}
+
+.modal__close:hover {
+  opacity: 0.6;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__title {
+  margin: 0 0 30px 0;
+  padding: 0 0 13px 0;
+  border: none;
+  border-bottom: solid rgba(0, 0, 0, 0.2) 1px;
+
+  font-family: "Inter", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.modal__description {
+  margin: 0 0 48px 0;
+  padding: 0 0 13px 0;
+  border: none;
+  border-bottom: solid rgba(0, 0, 0, 0.2) 1px;
+
+  font-family: "Inter", "Arial", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.modal__save {
+  color: #fff;
+  background: rgba(0, 0, 0, 1);
+  padding: 14px 0 19px 0;
+  border: none;
+  border-radius: 2px;
+
+  font-family: "Inter", "Arial", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  text-align: center;
+
+  transition: opacity 0.5s linear;
+  cursor: pointer;
+}
+
+.modal__save:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 800px) {
+  .modal__header {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 75px;
+  }
+
+  .modal__container {
+    min-width: 238px;
+  }
+
+  .modal__description {
+    margin-bottom: 45px;
+  }
+
+  .modal__container {
+    padding: 25px 22px;
+  }
+
+  .modal__close {
+    width: 26px;
+    height: 26px;
+    background-size: 26px 26px;
+    right: 0;
+    top: -53px;
+    animation: modal__close 1s ease-in;
+  }
+
+  .modal__save {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

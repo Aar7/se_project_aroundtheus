@@ -29,8 +29,6 @@ Where text may overflow their containers, special rules were implemented to ensu
 
 **_Images_**
 
-[Brief look at the webpage responding to screen-size changes](./brief_overview.mkv)
-
 [Page at 1280px](./1280px_demo.jpg)
 
 [Page at 320px](./320px_demo.jpg)
@@ -39,13 +37,32 @@ Where text may overflow their containers, special rules were implemented to ensu
 
 _Major_
 
-1. Cleaned up duplicate code in media queries
-2. Ensured font and design stylings were up to specifications
-3. Ensured that layout specifications were met
-4. Created a video overviewing the project and demonstrating its functions
-
-5. Added script.js
+1. Added responsive modal for edit feature. JS not implemented.
 
 _Minor_
 
-1. Reset default margins for the card headings.
+¯\\\_(๑❛ᴗ❛๑)\_/¯
+
+---
+
+**_Change History_**
+
+> `03-21-2024`
+
+_Major_
+
+- Cleaned up duplicate code in media queries
+- Ensured font and design stylings were up to specifications
+- Ensured that layout specifications were met
+- Created a video overviewing the project and demonstrating its functions
+- Added script.js
+
+_Minor_
+
+- Reset default margins for the card headings.
+
+> `03-24-2024`
+
+_Major_
+
+- Added responsive modal for edit feature. JS not implemented.
