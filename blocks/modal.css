@@ -1,15 +1,3 @@
-@keyframes modal__close {
-  0% {
-    top: -48px;
-    right: -48px;
-  }
-
-  100% {
-    right: 0px;
-    top: -53px;
-  }
-}
-
 .modal {
   position: fixed;
   display: none;
@@ -139,7 +127,6 @@
     background-size: 26px 26px;
     right: 0;
     top: -53px;
-    animation: modal__close 1s ease-in;
   }
 
   .modal__save {
