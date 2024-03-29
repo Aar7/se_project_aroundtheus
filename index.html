@@ -36,72 +36,6 @@
         </section>
         <section class="elements">
           <ul class="elements__list">
-            <!-- <li class="element">
-              <img
-                src="./images/yosemite.jpg"
-                alt="Yosimite Valley"
-                class="element__image"
-              />
-              <div class="element__info">
-                <h2 class="element__name">Yosimite Valley</h2>
-                <button type="button" class="element__like-button"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="./images/lake-louise.jpg"
-                alt="Lake Louise"
-                class="element__image"
-              />
-              <div class="element__info">
-                <h2 class="element__name">Lake Louise</h2>
-                <button type="button" class="element__like-button"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="./images/bald-mountains.jpg"
-                alt="The Bald Mountains"
-                class="element__image"
-              />
-              <div class="element__info">
-                <h2 class="element__name">Bald Mountains</h2>
-                <button type="button" class="element__like-button"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="./images/latemar.jpg"
-                alt="The Latemar"
-                class="element__image"
-              />
-              <div class="element__info">
-                <h2 class="element__name">Latemar</h2>
-                <button type="button" class="element__like-button"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="./images/vanoise.jpg"
-                alt="Vanoise National Park"
-                class="element__image"
-              />
-              <div class="element__info">
-                <h2 class="element__name">Vanoise National Park</h2>
-                <button type="button" class="element__like-button"></button>
-              </div>
-            </li>
-            <li class="element">
-              <img
-                src="./images/lago.jpg"
-                alt="Lago de Braies"
-                class="element__image"
-              />
-              <div class="element__info">
-                <h2 class="element__name">Lago de Braies</h2>
-                <button type="button" class="element__like-button"></button>
-              </div>
-            </li> -->
             <template id="add-elements">
               <li class="element">
                 <img src="" alt="" class="element__image" />
@@ -122,18 +56,18 @@
       <div class="modal__container">
         <h2 class="modal__header">Edit Profile</h2>
         <button type="button" class="modal__close"></button>
-        <form class="modal__form">
+        <form class="modal__form" id="modal-form">
           <input
             type="text"
             name="Title"
             placeholder="Name"
-            class="modal__title"
+            class="modal__input"
           />
           <input
             type="text"
             name="Description"
             placeholder="About me"
-            class="modal__description"
+            class="modal__input"
           />
           <button type="submit" class="modal__save">Save</button>
         </form>

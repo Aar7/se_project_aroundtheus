@@ -25,37 +25,18 @@ const initialCards = [
   },
 ];
 
-// Dynamic card-addition
+// NODES NODES NODES NODES
 const sectionElements = document.querySelector(".elements");
 const elementsList = document.querySelector(".elements__list");
 const elementsTemplate = document.querySelector("#add-elements").content;
-function getCardElement(data) {
-  let cardElement = elementsTemplate.querySelector(".element").cloneNode(true);
-  // Store card title and image in variables
-  let cardName = cardElement.querySelector(".element__name");
-  let cardImage = cardElement.querySelector(".element__image");
-
-  // Set title, image, and alt to object attributes
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
-  cardName.textContent = data.name;
-  return cardElement;
-}
-
-for (let i in initialCards) {
-  elementsList.append(getCardElement(initialCards[i]));
-}
-
-// Nodes
 const editButton = document.querySelector(".profile__button-edit");
 const pageBody = document.querySelector(".page");
 const modal = pageBody.querySelector(".modal"); // form HTML
-const modalForm = modal.querySelector(".modal__form");
-const modalTitle = modalForm.querySelector(".modal__title");
-const modalDescription = modalForm.querySelector(".modal__description");
+const modalForm = document.forms["modal-form"];
+const modalTitle = modalForm.querySelector("[name = Title]");
+const modalDescription = modalForm.querySelector("[name = Description]");
 const closeButton = pageBody.querySelector(".modal__close");
 const saveButton = pageBody.querySelector(".modal__save");
-
 const sectionProfile = pageBody.querySelector(".profile");
 const sectionProfileInfo = pageBody.querySelector(".profile__profile-info");
 const sectionProfileInfoHeading = sectionProfileInfo.querySelector(
@@ -64,6 +45,32 @@ const sectionProfileInfoHeading = sectionProfileInfo.querySelector(
 const sectionProfileInfoSubtitle =
   sectionProfileInfo.querySelector(".profile__subtitle");
 
+// FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
+//    Retrieve card data
+function getCardElement(data) {
+  const cardElement = elementsTemplate
+    .querySelector(".element")
+    .cloneNode(true);
+  // Store card title and image in variables
+  const cardName = cardElement.querySelector(".element__name");
+  const cardImage = cardElement.querySelector(".element__image");
+
+  // Set title, image, and alt to object attributes
+  cardImage.src = data.link;
+  cardImage.alt = data.name;
+  cardName.textContent = data.name;
+  return cardElement;
+}
+for (let i in initialCards) {
+  elementsList.append(getCardElement(initialCards[i]));
+}
+
+//    Close modal function
+function closeModal() {
+  modal.classList.remove("modal_opened");
+}
+
+// EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS
 // Click 'edit' button
 editButton.addEventListener("click", function () {
   modal.classList.add("modal_opened"); // opens modal
@@ -73,18 +80,15 @@ editButton.addEventListener("click", function () {
 });
 
 // Click 'close' button in modal
-closeButton.addEventListener("click", function () {
-  modal.classList.remove("modal_opened");
-});
+closeButton.addEventListener("click", closeModal);
 
-// Edit fields in modal form and save to HTML without page-refresh
-modalForm.addEventListener("submit", function handleModalFormSubmit(evt) {
+// Click 'save' button in modal
+modalForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
-  // console.log(evt);
 
   sectionProfileInfoHeading.textContent = modalTitle.value;
   sectionProfileInfoSubtitle.textContent = modalDescription.value;
 
   // Close modal
-  modal.classList.remove("modal_opened");
+  closeModal();
 });

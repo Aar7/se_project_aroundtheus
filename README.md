@@ -7,6 +7,7 @@
 - Links
 - Images
 - Recent changes
+- Change History
 
 **_Project Name:_** Around the U.S.
 
@@ -37,7 +38,10 @@ Where text may overflow their containers, special rules were implemented to ensu
 
 _Major_
 
-1. Added responsive modal for edit feature. JS not implemented.
+> `03-29-2024`
+
+1. Added functionality to modal. Profile edit button, modal save and close buttons are functional. Entries can be saved for profile header and description before refreshing.
+2. Added JS to enable cards to be dynamically generated based on precoded values and future implementation of profile 'add' button to allow users to add cards.
 
 _Minor_
 
@@ -66,3 +70,10 @@ _Minor_
 _Major_
 
 - Added responsive modal for edit feature. JS not implemented.
+
+> `03-29-2024`
+
+_Major_
+
+- Added functionality to modal. Profile edit button, modal save and close buttons are functional. Entries can be saved for profile header and description before refreshing.
+- Added JS to enable cards to be dynamically generated based on precoded values and future implementation of profile 'add' button to allow users to add cards.
