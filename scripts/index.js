@@ -31,9 +31,9 @@ const elementsList = document.querySelector(".elements__list");
 const elementsTemplate = document.querySelector("#add-elements").content;
 const editButton = document.querySelector(".profile__button-edit");
 const pageBody = document.querySelector(".page");
-const modal = pageBody.querySelector(".modal"); // form HTML
+const editProfileModal = pageBody.querySelector(".modal"); // form HTML
 const modalForm = document.forms["modal-form"];
-const modalTitle = modalForm.querySelector("[name = Title]");
+const modalName = modalForm.querySelector("[name = Name]");
 const modalDescription = modalForm.querySelector("[name = Description]");
 const closeButton = pageBody.querySelector(".modal__close");
 const saveButton = pageBody.querySelector(".modal__save");
@@ -61,21 +61,21 @@ function getCardElement(data) {
   cardName.textContent = data.name;
   return cardElement;
 }
-for (let i in initialCards) {
-  elementsList.append(getCardElement(initialCards[i]));
-}
+initialCards.forEach((card) => {
+  elementsList.append(getCardElement(card));
+});
 
 //    Close modal function
 function closeModal() {
-  modal.classList.remove("modal_opened");
+  editProfileModal.classList.remove("modal_opened");
 }
 
 // EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS
-// Click 'edit' button
-editButton.addEventListener("click", function () {
-  modal.classList.add("modal_opened"); // opens modal
 
-  modalTitle.value = sectionProfileInfoHeading.textContent;
+editButton.addEventListener("click", function () {
+  editProfileModal.classList.add("modal_opened"); // opens modal
+
+  modalName.value = sectionProfileInfoHeading.textContent;
   modalDescription.value = sectionProfileInfoSubtitle.textContent;
 });
 
@@ -86,9 +86,59 @@ closeButton.addEventListener("click", closeModal);
 modalForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
-  sectionProfileInfoHeading.textContent = modalTitle.value;
+  sectionProfileInfoHeading.textContent = modalName.value;
   sectionProfileInfoSubtitle.textContent = modalDescription.value;
 
   // Close modal
   closeModal();
 });
+
+// Click 'close' button in modal. Global function
+closeButton.addEventListener("click", closeModal);
+
+// // Conditional to set modal values according to which button was clicked.
+// editButton.addEventListener("click", function () {
+//   // modalHeader.value = "Edit Profile";
+//   modalHeader.textContent = "Edit Profile";
+//   modalTitle.setAttribute("placeholder", "Name");
+//   modalDescription.setAttribute("placeholder", "About me");
+//   saveButton.textContent = "Save";
+
+//   modalTitle.value = sectionProfileInfoHeading.textContent;
+//   modalDescription.value = sectionProfileInfoSubtitle.textContent;
+
+//   modal.classList.add("modal_opened"); // opens modal
+// });
+
+// addButton.addEventListener("click", function () {
+//   modalHeader.textContent = "New place";
+//   modalTitle.setAttribute("placeholder", "Title");
+//   modalDescription.setAttribute("placeholder", "Image link");
+//   saveButton.textContent = "Create";
+
+//   modal.classList.add("modal_opened"); // opens modal
+// });
+
+// // Click 'save' button in modal
+// modalForm.addEventListener("submit", function (evt) {
+//   evt.preventDefault();
+
+//   // Conditional to set the values according to whether the edit or add buttons were pressed
+//   if (saveButton.textContent == "Save") {
+//     sectionProfileInfoHeading.textContent = modalTitle.value;
+//     sectionProfileInfoSubtitle.textContent = modalDescription.value;
+//     console.log("'Save' clicked..."); // just placeholder code until actual fn is added
+//   } else if (saveButton.textContent == "Create") {
+//     // Add title and image link to initialCards beginning
+//     let newCardObject = { name: "Foo", link: "bar" };
+//     initialCards.unshift(newCardObject);
+//     initialCards.forEach((card) => {
+//       elementsList.append(getCardElement(card));
+//     });
+//     // Do I need to re-add the cards to see the new one at the beginning? Try it
+//     console.log("'Create' clicked..."); // just placeholder code until actual fn is added
+//   }
+//   // Close modal
+//   closeModal();
+//   resetModal();
+// });
