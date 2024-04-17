@@ -29,14 +29,24 @@ const initialCards = [
 const sectionElements = document.querySelector(".elements");
 const elementsList = document.querySelector(".elements__list");
 const elementsTemplate = document.querySelector("#add-elements").content;
-const editButton = document.querySelector(".profile__button-edit");
 const pageBody = document.querySelector(".page");
 const editProfileModal = pageBody.querySelector("#edit-modal"); // form HTML
+const addCardModal = pageBody.querySelector("#add-card-modal");
 const editProfileForm = document.forms["edit-profile-form"];
-const modalTitle = editProfileForm.querySelector("[name = name]");
-const modalDescription = editProfileForm.querySelector("[name = aboutme]");
-const closeButton = pageBody.querySelector(".modal__close");
+const addCardForm = document.forms["add-card-form"];
+const editModalNameInput = editProfileForm.querySelector("[name = name]");
+const editModalAboutmeInput = editProfileForm.querySelector("[name = aboutme]");
+const addCardModalTitleInput = addCardForm.querySelector("[name = title]");
+const addCardModalImagelinkInput =
+  addCardForm.querySelector("[name = imagelink]");
+
+const editButton = document.querySelector(".profile__button-edit");
+const editProfileCloseModalButton =
+  editProfileModal.querySelector(".modal__close");
+const addCardCloseModalButton = addCardModal.querySelector(".modal__close");
 const saveButton = pageBody.querySelector(".modal__save");
+const addCardButton = pageBody.querySelector(".profile__button-add");
+
 const sectionProfile = pageBody.querySelector(".profile");
 const sectionProfileInfo = pageBody.querySelector(".profile__profile-info");
 const sectionProfileInfoHeading = sectionProfileInfo.querySelector(
@@ -61,38 +71,44 @@ function getCardElement(data) {
   cardName.textContent = data.name;
   return cardElement;
 }
-// for (let i in initialCards) {
-//   elementsList.append(getCardElement(initialCards[i]));
-// }
 
-initialCards.forEach((addCard) => {
-  elementsList.append(getCardElement(addCard));
-});
+function openModal(modal) {
+  modal.classList.add("modal_opened");
+}
 
-//    Close modal function
-function closeModal() {
-  editProfileModal.classList.remove("modal_opened");
+function closeModal(modal) {
+  modal.classList.remove("modal_opened");
 }
 
 // EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS
 // Click 'edit' button
-editButton.addEventListener("click", function () {
-  editProfileModal.classList.add("modal_opened"); // opens modal
+editButton.addEventListener("click", () => {
+  editModalNameInput.value = sectionProfileInfoHeading.textContent;
+  editModalAboutmeInput.value = sectionProfileInfoSubtitle.textContent;
 
-  modalTitle.value = sectionProfileInfoHeading.textContent;
-  modalDescription.value = sectionProfileInfoSubtitle.textContent;
+  openModal(editProfileModal);
 });
+addCardButton.addEventListener("click", () => openModal(addCardModal));
 
-// Click 'close' button in modal
-closeButton.addEventListener("click", closeModal);
+editProfileCloseModalButton.addEventListener("click", () =>
+  closeModal(editProfileModal)
+);
 
-// Click 'save' button in modal
+addCardCloseModalButton.addEventListener("click", () =>
+  closeModal(addCardModal)
+);
+
+// Click 'save' button in edit modal
 editProfileForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
-  sectionProfileInfoHeading.textContent = modalTitle.value;
-  sectionProfileInfoSubtitle.textContent = modalDescription.value;
+  sectionProfileInfoHeading.textContent = editModalNameInput.value;
+  sectionProfileInfoSubtitle.textContent = editModalAboutmeInput.value;
 
   // Close modal
-  closeModal();
+  closeModal(editProfileModal);
+});
+
+initialCards.forEach((addCard) => {
+  elementsList.append(getCardElement(addCard));
 });
