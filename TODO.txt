@@ -1,0 +1,4 @@
+TODO:
+- turn act of opening the modal into a function
+- consider turning anonymous fns into arrow expressions
+- 
