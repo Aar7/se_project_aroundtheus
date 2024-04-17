@@ -52,21 +52,44 @@
         <p class="footer__copyright">© 2024 Around the US</p>
       </footer>
     </div>
-    <div class="modal">
+    <!-- Edit-profile modal -->
+    <div class="modal" id="edit-modal">
       <div class="modal__container">
         <h2 class="modal__header">Edit Profile</h2>
         <button type="button" class="modal__close"></button>
-        <form class="modal__form" id="modal-form">
+        <form class="modal__form" id="edit-profile-form">
           <input
             type="text"
-            name="Title"
+            name="name"
             placeholder="Name"
             class="modal__input"
           />
           <input
             type="text"
-            name="Description"
+            name="aboutme"
             placeholder="About me"
+            class="modal__input"
+          />
+          <button type="submit" class="modal__save">Save</button>
+        </form>
+      </div>
+    </div>
+    <!-- Add-card modal -->
+    <div class="modal" id="add-card-modal">
+      <div class="modal__container">
+        <h2 class="modal__header">New place</h2>
+        <button type="button" class="modal__close"></button>
+        <form class="modal__form" id="add-card-form">
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            class="modal__input"
+          />
+          <input
+            type="text"
+            name="imagelink"
+            placeholder="Image link"
             class="modal__input"
           />
           <button type="submit" class="modal__save">Save</button>

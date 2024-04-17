@@ -31,10 +31,10 @@ const elementsList = document.querySelector(".elements__list");
 const elementsTemplate = document.querySelector("#add-elements").content;
 const editButton = document.querySelector(".profile__button-edit");
 const pageBody = document.querySelector(".page");
-const modal = pageBody.querySelector(".modal"); // form HTML
-const modalForm = document.forms["modal-form"];
-const modalTitle = modalForm.querySelector("[name = Title]");
-const modalDescription = modalForm.querySelector("[name = Description]");
+const editProfileModal = pageBody.querySelector("#edit-modal"); // form HTML
+const editProfileForm = document.forms["edit-profile-form"];
+const modalTitle = editProfileForm.querySelector("[name = name]");
+const modalDescription = editProfileForm.querySelector("[name = aboutme]");
 const closeButton = pageBody.querySelector(".modal__close");
 const saveButton = pageBody.querySelector(".modal__save");
 const sectionProfile = pageBody.querySelector(".profile");
@@ -71,13 +71,13 @@ initialCards.forEach((addCard) => {
 
 //    Close modal function
 function closeModal() {
-  modal.classList.remove("modal_opened");
+  editProfileModal.classList.remove("modal_opened");
 }
 
 // EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS
 // Click 'edit' button
 editButton.addEventListener("click", function () {
-  modal.classList.add("modal_opened"); // opens modal
+  editProfileModal.classList.add("modal_opened"); // opens modal
 
   modalTitle.value = sectionProfileInfoHeading.textContent;
   modalDescription.value = sectionProfileInfoSubtitle.textContent;
@@ -87,7 +87,7 @@ editButton.addEventListener("click", function () {
 closeButton.addEventListener("click", closeModal);
 
 // Click 'save' button in modal
-modalForm.addEventListener("submit", function (evt) {
+editProfileForm.addEventListener("submit", function (evt) {
   evt.preventDefault();
 
   sectionProfileInfoHeading.textContent = modalTitle.value;
