@@ -1,4 +1,5 @@
 .element {
+  position: relative;
   background-color: #fff;
   border-radius: 10px;
   line-height: 0;
@@ -47,6 +48,26 @@
   background-image: url(../images/card-heart-solid.svg);
 }
 
+.element__delete-card-button {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  width: 18px;
+  height: 19px;
+  background: url(../images/element-trash-can.svg) center no-repeat;
+  background-size: 18px 19px;
+  border: none;
+  padding: 0;
+
+  transition: opacity 0.5s ease-in-out;
+
+  cursor: pointer;
+}
+
 .element__like-button:hover {
   opacity: 0.5;
+}
+
+.element__delete-card-button:hover {
+  opacity: 0.6;
 }

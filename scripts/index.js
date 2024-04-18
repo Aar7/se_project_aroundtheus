@@ -64,10 +64,17 @@ function getCardElement(data) {
   // Store card title and image in variables
   const cardName = cardElement.querySelector(".element__name");
   const cardImage = cardElement.querySelector(".element__image");
-
   const likeCardButton = cardElement.querySelector(".element__like-button");
+  const deleteCardButton = cardElement.querySelector(
+    ".element__delete-card-button"
+  );
+
   likeCardButton.addEventListener("click", () => {
     likeCardButton.classList.toggle("element__like-button_active");
+  });
+
+  deleteCardButton.addEventListener("click", () => {
+    cardElement.remove();
   });
 
   // Set title, image, and alt to object attributes
