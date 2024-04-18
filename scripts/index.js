@@ -72,6 +72,11 @@ function getCardElement(data) {
   return cardElement;
 }
 
+function renderCards(addCard) {
+  const element = getCardElement(addCard);
+  initialCards.prepend(element);
+}
+
 function openModal(modal) {
   modal.classList.add("modal_opened");
 }
@@ -99,14 +104,28 @@ addCardCloseModalButton.addEventListener("click", () =>
 );
 
 // Click 'save' button in edit modal
-editProfileForm.addEventListener("submit", function (evt) {
+editProfileForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
 
   sectionProfileInfoHeading.textContent = editModalNameInput.value;
   sectionProfileInfoSubtitle.textContent = editModalAboutmeInput.value;
 
-  // Close modal
   closeModal(editProfileModal);
+});
+
+// Click 'create' button in add-card modal
+addCardForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  let name = addCardModalTitleInput.value;
+  let link = addCardModalImagelinkInput.value;
+
+  let newCard = getCardElement({ name, link });
+  elementsList.prepend(newCard);
+
+  addCardModalTitleInput.value = "";
+  addCardModalImagelinkInput.value = "";
+
+  closeModal(addCardModal);
 });
 
 initialCards.forEach((addCard) => {
