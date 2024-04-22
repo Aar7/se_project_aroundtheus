@@ -39,13 +39,11 @@ const editModalAboutmeInput = editProfileForm.querySelector("[name = aboutme]");
 const addCardModalTitleInput = addCardForm.querySelector("[name = title]");
 const addCardModalImagelinkInput =
   addCardForm.querySelector("[name = imagelink]");
-const openCardModal = pageBody.querySelector("#open-card-modal");
 
 const editButton = document.querySelector(".profile__button-edit");
 const editProfileCloseModalButton =
   editProfileModal.querySelector(".modal__close");
 const addCardCloseModalButton = addCardModal.querySelector(".modal__close");
-const openCardCloseModalButton = openCardModal.querySelector(".modal__close");
 const saveButton = pageBody.querySelector(".modal__save");
 const addCardButton = pageBody.querySelector(".profile__button-add");
 
@@ -70,15 +68,6 @@ function getCardElement(data) {
   const deleteCardButton = cardElement.querySelector(
     ".element__delete-card-button"
   );
-
-  cardImage.addEventListener("click", () => {
-    openCardModal
-      .querySelector(".modal__image")
-      .setAttribute("src", cardImage.getAttribute("src"));
-    openCardModal.querySelector(".modal__image-title").textContent =
-      cardElement.querySelector(".element__name").textContent;
-    openModal(openCardModal);
-  });
 
   likeCardButton.addEventListener("click", () => {
     likeCardButton.classList.toggle("element__like-button_active");
@@ -124,10 +113,6 @@ editProfileCloseModalButton.addEventListener("click", () =>
 
 addCardCloseModalButton.addEventListener("click", () =>
   closeModal(addCardModal)
-);
-
-openCardCloseModalButton.addEventListener("click", () =>
-  closeModal(openCardModal)
 );
 
 // Click 'save' button in edit modal
