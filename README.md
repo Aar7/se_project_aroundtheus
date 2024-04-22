@@ -36,16 +36,22 @@ Where text may overflow their containers, special rules were implemented to ensu
 
 **_Recent changes_**
 
+> `04-22-2024`
+
 _Major_
 
-> `03-29-2024`
-
-1. Added functionality to modal. Profile edit button, modal save and close buttons are functional. Entries can be saved for profile header and description before refreshing.
-2. Added JS to enable cards to be dynamically generated based on precoded values and future implementation of profile 'add' button to allow users to add cards.
+1. Integrate modal for adding cards
+   - Add ability to generate card according to user input
+2. Integrate delete icon to be gnerated on each generated card
+   - Add ability to delete respective card
+3. Integrate ability to 'open' cards when user clicks on one
+4. Integrated smooth opening and closing of modals
 
 _Minor_
 
-¯\\\_(๑❛ᴗ❛๑)\_/¯
+1. Refactor 'for' loop for generating cards to forEach loop
+2. Integrate style-change for like-button
+3. Refactor index.js for readability
 
 ---
 
@@ -77,3 +83,19 @@ _Major_
 
 - Added functionality to modal. Profile edit button, modal save and close buttons are functional. Entries can be saved for profile header and description before refreshing.
 - Added JS to enable cards to be dynamically generated based on precoded values and future implementation of profile 'add' button to allow users to add cards.
+
+> `04-22-2024`
+
+_Major_
+
+1. Integrate modal for adding cards
+   - Add ability to generate card according to user input
+2. Integrate delete icon to be gnerated on each generated card
+   - Add ability to delete respective card
+3. Integrate ability to 'open' cards when user clicks on one
+4. Integrated smooth opening and closing of modals
+
+_Minor_
+
+1. Refactor 'for' loop for generating cards to forEach loop
+2. Integrate style-change for like-button
