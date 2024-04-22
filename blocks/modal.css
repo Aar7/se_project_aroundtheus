@@ -119,6 +119,22 @@
   opacity: 0.8;
 }
 
+#open-card-modal > .modal__container {
+  background: transparent;
+  padding: 0;
+}
+
+#open-card-modal > .modal__container > .modal__image {
+  max-width: 75vh;
+  max-height: 75vh;
+}
+
+#open-card-modal > .modal__container > .modal__image-title {
+  margin: 10px 0 0 0;
+  font-size: 12px;
+  line-height: 15px;
+}
+
 @media screen and (max-width: 800px) {
   .modal__header {
     font-size: 18px;
