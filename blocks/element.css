@@ -12,7 +12,7 @@
   cursor: pointer;
 }
 
-.element__image .element__info {
+.element__info {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

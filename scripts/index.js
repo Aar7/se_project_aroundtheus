@@ -26,29 +26,38 @@ const initialCards = [
 ];
 
 // NODES NODES NODES NODES
-const sectionElements = document.querySelector(".elements");
+const pageBody = document.querySelector(".page");
+// const sectionProfile = document.querySelector(".profile");
+// const sectionElements = document.querySelector(".elements");
 const elementsList = document.querySelector(".elements__list");
 const elementsTemplate = document.querySelector("#add-elements").content;
-const pageBody = document.querySelector(".page");
-const editProfileModal = pageBody.querySelector("#edit-modal"); // form HTML
-const addCardModal = pageBody.querySelector("#add-card-modal");
+
+// modal nodes
+const editProfileModal = document.querySelector("#edit-modal");
+const addCardModal = document.querySelector("#add-card-modal");
+const openCardModal = document.querySelector("#open-card-modal");
+
+// form nodes
 const editProfileForm = document.forms["edit-profile-form"];
 const addCardForm = document.forms["add-card-form"];
+
+// input nodes
 const editModalNameInput = editProfileForm.querySelector("[name = name]");
 const editModalAboutmeInput = editProfileForm.querySelector("[name = aboutme]");
 const addCardModalTitleInput = addCardForm.querySelector("[name = title]");
 const addCardModalImagelinkInput =
   addCardForm.querySelector("[name = imagelink]");
 
+// button nodes
 const editButton = document.querySelector(".profile__button-edit");
+const addCardButton = document.querySelector(".profile__button-add");
+const saveButton = document.querySelector(".modal__save");
 const editProfileCloseModalButton =
   editProfileModal.querySelector(".modal__close");
 const addCardCloseModalButton = addCardModal.querySelector(".modal__close");
-const saveButton = pageBody.querySelector(".modal__save");
-const addCardButton = pageBody.querySelector(".profile__button-add");
+const openCardCloseModalButton = openCardModal.querySelector(".modal__close");
 
-const sectionProfile = pageBody.querySelector(".profile");
-const sectionProfileInfo = pageBody.querySelector(".profile__profile-info");
+const sectionProfileInfo = document.querySelector(".profile__profile-info");
 const sectionProfileInfoHeading = sectionProfileInfo.querySelector(
   ".profile__profile-heading"
 );
@@ -68,6 +77,15 @@ function getCardElement(data) {
   const deleteCardButton = cardElement.querySelector(
     ".element__delete-card-button"
   );
+
+  cardImage.addEventListener("click", () => {
+    openCardModal
+      .querySelector(".modal__image")
+      .setAttribute("src", cardImage.getAttribute("src"));
+    openCardModal.querySelector(".modal__image-title").textContent =
+      cardElement.querySelector(".element__name").textContent;
+    openModal(openCardModal);
+  });
 
   likeCardButton.addEventListener("click", () => {
     likeCardButton.classList.toggle("element__like-button_active");
@@ -113,6 +131,10 @@ editProfileCloseModalButton.addEventListener("click", () =>
 
 addCardCloseModalButton.addEventListener("click", () =>
   closeModal(addCardModal)
+);
+
+openCardCloseModalButton.addEventListener("click", () =>
+  closeModal(openCardModal)
 );
 
 // Click 'save' button in edit modal
