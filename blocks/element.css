@@ -9,9 +9,10 @@
   border-radius: 10px 10px 0 0;
   height: 282px;
   width: 282px;
+  cursor: pointer;
 }
 
-.element__info {
+.element__image .element__info {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
