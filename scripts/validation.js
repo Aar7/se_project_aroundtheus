@@ -79,27 +79,5 @@ function enableValidation(configObj) {
   });
 }
 
-function closeModals() {
-  const modals = Array.from(document.querySelectorAll(".modal"));
-  console.log(modals);
-
-  modals.forEach((modal) => {
-    modal.addEventListener("click", (event) => {
-      if (event.target.classList.contains("modal_opened")) {
-        closeModal(modal);
-        console.log(event.target);
-      }
-    });
-    document.addEventListener("keydown", (event) => {
-      // console.log(event);
-      if (event.key === "Escape") {
-        closeModal(modal);
-        console.log(event.target);
-        // console.log(event.currentTarget);
-      }
-    });
-  });
-}
 // FUNCTION CALLS
 enableValidation(configObj);
-closeModals();

@@ -1,6 +1,6 @@
 const initialCards = [
   {
-    name: "Yosimite Valley",
+    name: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
   },
   {
@@ -49,6 +49,7 @@ const addCardModalImagelinkInput =
 // button nodes
 const editButton = document.querySelector(".profile__button-edit");
 const addCardButton = document.querySelector(".profile__button-add");
+const createButton = addCardForm.querySelector(".modal__save");
 const editProfileCloseModalButton =
   editProfileModal.querySelector(".modal__close");
 const addCardCloseModalButton = addCardModal.querySelector(".modal__close");
@@ -64,6 +65,28 @@ const closeButtons = document.querySelectorAll(".modal__close");
 
 // FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
 //    Retrieve card data
+function closeModals() {
+  const modals = Array.from(document.querySelectorAll(".modal"));
+  console.log(modals);
+
+  modals.forEach((modal) => {
+    modal.addEventListener("click", (event) => {
+      if (event.target.classList.contains("modal_opened")) {
+        closeModal(modal);
+        console.log(event.target);
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      // console.log(event);
+      if (event.key === "Escape") {
+        closeModal(modal);
+        console.log(event.target);
+        // console.log(event.currentTarget);
+      }
+    });
+  });
+}
+
 function getCardElement(data) {
   const cardElement = elementsTemplate
     .querySelector(".element")
@@ -109,6 +132,8 @@ function closeModal(modal) {
   modal.classList.remove("modal_opened");
 }
 
+closeModals();
+
 // EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS
 // Click 'edit' button
 editButton.addEventListener("click", () => {
@@ -117,7 +142,14 @@ editButton.addEventListener("click", () => {
 
   openModal(editProfileModal);
 });
-addCardButton.addEventListener("click", () => openModal(addCardModal));
+// addCardButton.addEventListener("click", () => openModal(addCardModal));
+addCardButton.addEventListener("click", () => {
+  toggleButtonState(
+    [addCardModalTitleInput, addCardModalImagelinkInput],
+    createButton
+  );
+  openModal(addCardModal);
+});
 
 // Click 'save' button in edit modal
 editProfileForm.addEventListener("submit", (evt) => {
