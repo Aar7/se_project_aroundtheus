@@ -45,7 +45,7 @@ function toggleButtonState(inputElements, submitButton) {
     submitButton.setAttribute("disabled", "");
   } else {
     submitButton.classList.remove(configObj.inactiveButtonClass);
-    submitButton.removeAttribute(disabled);
+    submitButton.removeAttribute("disabled");
   }
 }
 
@@ -79,17 +79,27 @@ function enableValidation(configObj) {
   });
 }
 
-function closeModal() {
+function closeModals() {
   const modals = Array.from(document.querySelectorAll(".modal"));
   console.log(modals);
 
   modals.forEach((modal) => {
-    modal.addEventListener("click", () => {
-      modal.classList.remove("modal_opened");
+    modal.addEventListener("click", (event) => {
+      if (event.target.classList.contains("modal_opened")) {
+        closeModal(modal);
+        console.log(event.target);
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      // console.log(event);
+      if (event.key === "Escape") {
+        closeModal(modal);
+        console.log(event.target);
+        // console.log(event.currentTarget);
+      }
     });
   });
 }
-
 // FUNCTION CALLS
 enableValidation(configObj);
-closeModal();
+closeModals();
