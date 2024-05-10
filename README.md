@@ -36,27 +36,12 @@ Where text may overflow their containers, special rules were implemented to ensu
 
 **_Recent changes_**
 
-> `04-22-2024`
+> `05-10-2024`
 
 _Major_
 
-1. Implement modal for adding cards
-   - Add ability to generate card according to user input
-2. Implement delete icon to be gnerated on each generated card
-   - Add ability to delete respective card
-3. Implement ability to 'open' cards when user clicks on one
-4. Implementd smooth opening and closing of modals
-
-_Minor_
-
-1. Refactor 'for' loop for generating cards to forEach loop
-2. Implement style-change for like-button
-3. Refactor index.js for readability
-
-_Revisions_
-
-1. Removed hardcoded event listeners for close buttons for each popup
-   - Implement array containing all close buttons and iterate through each at the end of index.js to add event listeners
+1. Enabled form validation for current and future forms
+2. Enable users to click outside modals or press 'Esc' when modals are open at any time to close them
 
 ---
 
@@ -109,3 +94,10 @@ _Revisions_
 
 1. Removed hardcoded event listeners for close buttons for each popup
    - Implement array containing all close buttons and iterate through each at the end of index.js to add event listeners
+
+> `05-10-2024`
+
+_Major_
+
+1. Enabled form validation for current and future forms
+2. Enable users to click outside modals or press 'Esc' when modals are open at any time to close them
