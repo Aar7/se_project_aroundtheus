@@ -61,19 +61,33 @@
       <div class="modal__container">
         <h2 class="modal__header">Edit Profile</h2>
         <button type="button" class="modal__close"></button>
-        <form class="modal__form" id="edit-profile-form">
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            class="modal__input"
-          />
-          <input
-            type="text"
-            name="aboutme"
-            placeholder="About me"
-            class="modal__input"
-          />
+        <form class="modal__form" id="edit-profile-form" novalidate>
+          <label class="modal__label">
+            <input
+              class="modal__input"
+              id="user-name"
+              type="text"
+              name="name"
+              placeholder="Name"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="modal__error" id="user-name-error"></span>
+          </label>
+          <label class="modal__label">
+            <input
+              class="modal__input"
+              id="user-about"
+              type="text"
+              name="aboutme"
+              placeholder="About me"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="modal__error" id="user-about-error"></span>
+          </label>
           <button type="submit" class="modal__save">Save</button>
         </form>
       </div>
@@ -83,20 +97,36 @@
       <div class="modal__container">
         <h2 class="modal__header">New place</h2>
         <button type="button" class="modal__close"></button>
-        <form class="modal__form" id="add-card-form">
-          <input
-            type="text"
-            name="title"
-            placeholder="Title"
-            class="modal__input"
-          />
-          <input
-            type="text"
-            name="imagelink"
-            placeholder="Image link"
-            class="modal__input"
-          />
-          <button type="submit" class="modal__save">Create</button>
+        <form class="modal__form" id="add-card-form" novalidate>
+          <label class="modal__label">
+            <input
+              class="modal__input"
+              id="card-title"
+              type="text"
+              name="title"
+              placeholder="Title"
+              required
+            />
+            <span class="modal__error" id="card-title-error"></span>
+          </label>
+          <label class="modal__label">
+            <input
+              class="modal__input"
+              id="card-link"
+              type="text"
+              name="imagelink"
+              placeholder="Image link"
+              required
+            />
+            <span class="modal__error" id="card-link-error"></span>
+          </label>
+          <button
+            type="submit"
+            class="modal__save modal__button_disabled"
+            disabled
+          >
+            Create
+          </button>
         </form>
       </div>
     </div>
@@ -104,11 +134,11 @@
     <div class="modal" id="open-card-modal">
       <div class="modal__container">
         <button type="button" class="modal__close"></button>
-        <img src="" alt="" class="modal__image">
+        <img src="" alt="" class="modal__image" />
         <p class="modal__image-title"></p>
-        </form>
       </div>
     </div>
     <script src="scripts/index.js"></script>
+    <script src="scripts/validation.js"></script>
   </body>
 </html>
