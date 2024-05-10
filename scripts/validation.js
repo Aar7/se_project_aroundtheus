@@ -79,4 +79,17 @@ function enableValidation(configObj) {
   });
 }
 
+function closeModal() {
+  const modals = Array.from(document.querySelectorAll(".modal"));
+  console.log(modals);
+
+  modals.forEach((modal) => {
+    modal.addEventListener("click", () => {
+      modal.classList.remove("modal_opened");
+    });
+  });
+}
+
+// FUNCTION CALLS
 enableValidation(configObj);
+closeModal();

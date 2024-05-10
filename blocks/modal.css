@@ -9,6 +9,7 @@
   bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
   margin: auto;
   padding: 0 19px 0;
   opacity: 0;
