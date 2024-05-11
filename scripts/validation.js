@@ -39,7 +39,7 @@ function hasInvalidInput(inputElements) {
   });
 }
 
-function toggleButtonState(inputElements, submitButton) {
+function toggleButtonState(inputElements, submitButton, configObj) {
   if (hasInvalidInput(inputElements)) {
     submitButton.classList.add(configObj.inactiveButtonClass);
     submitButton.setAttribute("disabled", "");
@@ -55,11 +55,11 @@ function setEventListeners(formElement, configObj) {
   const submitButton = formElement.querySelector(
     configObj.submitButtonSelector
   );
-  console.log(submitButton);
+  // console.log(submitButton);
   inputElements.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
       checkInputValidity(formElement, inputElement, configObj);
-      toggleButtonState(inputElements, submitButton);
+      toggleButtonState(inputElements, submitButton, configObj);
     });
   });
 }
