@@ -68,10 +68,8 @@ function enableValidation(configObj) {
   const formElements = Array.from(
     document.querySelectorAll(configObj.formSelector)
   );
-  // console.log(formElements);
 
   formElements.forEach((formElement) => {
-    // console.log(formElement);
     formElement.addEventListener("submit", (event) => {
       event.preventDefault();
     });
