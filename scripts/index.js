@@ -67,36 +67,22 @@ const sectionProfileInfoSubtitle =
   sectionProfileInfo.querySelector(".profile__subtitle");
 const closeButtons = document.querySelectorAll(".modal__close");
 
-// FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
-
-function handleClickToClose() {
-  modalsArray.forEach((modal) => {
-    modal.addEventListener("click", (event) => {
-      if (event.target.classList.contains("modal_opened")) {
-        closeModal(modal);
-        return;
-      }
-    });
+modalsArray.forEach((modal) => {
+  modal.addEventListener("click", (event) => {
+    if (event.target.classList.contains("modal_opened")) {
+      closeModal(modal);
+      return;
+    }
   });
-}
 
-function handleEscapeToClose() {
-  modalsArray.forEach((modal) => {
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        closeModal(modal);
-      }
-    });
-  });
-}
+  // FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
+});
 
-function setCloseModalHandlers(modal) {
-  modal.addEventListener("click", handleClickToClose);
-  document.addEventListener("keydown", handleEscapeToClose);
-}
-function removeCloseModalHandlers(modal) {
-  modal.removeEventListener("click", handleClickToClose);
-  document.removeEventListener("keydown", handleEscapeToClose);
+function handleEscapeToClose(event) {
+  if (event.key === "Escape") {
+    const openedModal = document.querySelector(".modal_opened");
+    closeModal(openedModal);
+  }
 }
 
 //    Retrieve card data
@@ -135,6 +121,7 @@ function getCardElement(data) {
   return cardElement;
 }
 
+//    Render cards
 function renderCard(card, method = "append") {
   const cardElement = getCardElement(card);
   elementsList[method](cardElement);
@@ -142,12 +129,12 @@ function renderCard(card, method = "append") {
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  setCloseModalHandlers(modal);
+  document.addEventListener("keydown", handleEscapeToClose);
 }
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  removeCloseModalHandlers(modal);
+  document.removeEventListener("keydown", handleEscapeToClose);
 }
 
 // EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS
@@ -185,8 +172,9 @@ addCardForm.addEventListener("submit", (evt) => {
   const name = addCardModalTitleInput.value;
   const link = addCardModalImagelinkInput.value;
 
-  const newCard = getCardElement({ name, link });
-  elementsList.prepend(newCard);
+  // const newCard = getCardElement({ name, link });
+  // elementsList.prepend(newCard);
+  renderCard({ name, link }, "prepend");
 
   evt.target.reset(); // Resets form fields
 

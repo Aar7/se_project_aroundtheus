@@ -36,12 +36,12 @@ Where text may overflow their containers, special rules were implemented to ensu
 
 **_Recent changes_**
 
-> `05-10-2024`
+> `05-13-2024`
 
-_Major_
+_Minor_
 
-1. Enabled form validation for current and future forms
-2. Enable users to click outside modals or press 'Esc' when modals are open at any time to close them
+1. Refactor code
+2. Fix escape-to-close and click-overlay-to-close event listeners
 
 ---
 
@@ -101,3 +101,10 @@ _Major_
 
 1. Enabled form validation for current and future forms
 2. Enable users to click outside modals or press 'Esc' when modals are open at any time to close them
+
+> `05-13-2024`
+
+_Minor_
+
+1. Refactor code
+2. Fix escape-to-close and click-overlay-to-close event listeners
