@@ -1,3 +1,5 @@
+import Card from "../components/Card.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -26,7 +28,7 @@ const initialCards = [
 ];
 
 // NODES NODES NODES NODES
-const pageBody = document.querySelector(".page");
+// const pageBody = document.querySelector(".page");
 const elementsList = document.querySelector(".elements__list");
 const elementsTemplate = document.querySelector("#add-elements").content;
 
@@ -85,6 +87,13 @@ function handleEscapeToClose(event) {
   }
 }
 
+// TESTING
+
+// const randObj = { name: "testname", link: "https://fakelink.org" };
+// const card = new Card(randObj, elementsTemplate);
+
+// TESTING
+
 //    Retrieve card data
 function getCardElement(data) {
   const cardElement = elementsTemplate
@@ -102,7 +111,6 @@ function getCardElement(data) {
     modalImage.setAttribute("src", cardImage.getAttribute("src"));
     modalImage.setAttribute("alt", cardName.textContent);
     modalImageTitle.textContent = cardName.textContent;
-    // setEscapeKeyHandler(openCardModal);
     openModal(openCardModal);
   });
 
@@ -142,7 +150,6 @@ function closeModal(modal) {
 editButton.addEventListener("click", () => {
   editModalNameInput.value = sectionProfileInfoHeading.textContent;
   editModalAboutmeInput.value = sectionProfileInfoSubtitle.textContent;
-  // setEscapeKeyHandler(editProfileModal);
 
   openModal(editProfileModal);
 });

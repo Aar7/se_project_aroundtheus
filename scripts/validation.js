@@ -55,7 +55,6 @@ function setEventListeners(formElement, configObj) {
   const submitButton = formElement.querySelector(
     configObj.submitButtonSelector
   );
-  // console.log(submitButton);
   inputElements.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
       checkInputValidity(formElement, inputElement, configObj);
