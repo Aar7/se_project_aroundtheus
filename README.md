@@ -36,12 +36,18 @@ Where text may overflow their containers, special rules were implemented to ensu
 
 **_Recent changes_**
 
-> `05-13-2024`
+> `06-3-2024`
+
+_Major_
+
+1. Refactored `getCardElement(...)` into `Card.js` as a class
+2. Refactored methods and properties of `validation.js` into `FormValidator.js` as a class
 
 _Minor_
 
 1. Refactor code
-2. Fix escape-to-close and click-overlay-to-close event listeners
+   - Removed unnecessary variables
+2. Added `name` attributes to forms in modals to avoid using names with dashes
 
 ---
 
@@ -108,3 +114,16 @@ _Minor_
 
 1. Refactor code
 2. Fix escape-to-close and click-overlay-to-close event listeners
+
+> `06-3-2024`
+
+_Major_
+
+1. Refactored `getCardElement(...)` into `Card.js` as a class
+2. Refactored methods and properties of `validation.js` into `FormValidator.js` as a class
+
+_Minor_
+
+1. Refactor code
+   - Removed unnecessary variables
+2. Added `name` attributes to forms in modals to avoid using names with dashes

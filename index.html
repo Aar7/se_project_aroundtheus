@@ -61,13 +61,18 @@
       <div class="modal__container">
         <h2 class="modal__header">Edit Profile</h2>
         <button type="button" class="modal__close"></button>
-        <form class="modal__form" id="edit-profile-form" novalidate>
+        <form
+          name="edit_profile_form"
+          class="modal__form"
+          id="edit-profile-form"
+          novalidate
+        >
           <label class="modal__label">
             <input
               class="modal__input"
               id="user-name"
               type="text"
-              name="name"
+              name="username"
               placeholder="Name"
               minlength="2"
               maxlength="40"
@@ -99,7 +104,12 @@
       <div class="modal__container">
         <h2 class="modal__header">New place</h2>
         <button type="button" class="modal__close"></button>
-        <form class="modal__form" id="add-card-form" novalidate>
+        <form
+          name="add_card_form"
+          class="modal__form"
+          id="add-card-form"
+          novalidate
+        >
           <label class="modal__label">
             <input
               class="modal__input"
@@ -141,7 +151,7 @@
         <p class="modal__image-title"></p>
       </div>
     </div>
-    <script defer src="pages/index.js" type="module"></script>
-    <script defer src="scripts/validation.js"></script>
+    <script defer src="./pages/index.js" type="module"></script>
+    <script defer src="./scripts/validation.js" type="module"></script>
   </body>
 </html>

@@ -25,6 +25,12 @@ export default class Card {
       .addEventListener("click", () => {
         this._handleDelete();
       });
+
+    this._cardElement
+      .querySelector(".element__image")
+      .addEventListener("click", () => {
+        this._handleImageClick(this._cardImage, this._cardName);
+      });
   }
 
   _handleDelete() {
@@ -45,6 +51,7 @@ export default class Card {
       .cloneNode(true);
 
     this._cardImage = this._cardElement.querySelector(".element__image");
+    this._cardName = this._cardElement.querySelector(".element__name");
 
     this._setEventListeners();
     this._cardImage.src = this._link;
