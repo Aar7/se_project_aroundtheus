@@ -41,6 +41,8 @@ Where text may overflow their containers, special rules were implemented to ensu
 _Major_
 
 1. Refactor `toggleSubmitButtonState()` to comply with the Single Responsibility Principle
+2. Add `resetValidation()` to `FormValidators.js`
+   - Call `resetValidation()` when opening 'edit profile modal'
 
 _Minor_
 
@@ -132,3 +134,19 @@ _Minor_
 1. Refactor code
    - Removed unnecessary variables
 2. Added `name` attributes to forms in modals to avoid using names with dashes
+
+> `06-4-2024`
+
+_Major_
+
+1. Refactor `toggleSubmitButtonState()` to comply with the Single Responsibility Principle
+2. Add `resetValidation()` to `FormValidators.js`
+   - Call `resetValidation()` when opening 'edit profile modal'
+
+_Minor_
+
+1. Refactor code
+   - Remove indication that globally-used class variables are private by removing underscores preceding the identifier names
+     - Example: `_toggleSubmitButtonState()` -> `toggleSubmitButtonState()`
+   - Remove repeated selector queries to save resources
+     - Add one-time selector queries to class constructors where possible

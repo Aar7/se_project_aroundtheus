@@ -112,6 +112,7 @@ editButton.addEventListener("click", () => {
   editModalAboutmeInput.value = sectionProfileInfoSubtitle.textContent;
 
   openModal(editProfileModal);
+  formValidators.edit_profile_form._resetValidation();
 });
 
 addCardButton.addEventListener("click", () => {

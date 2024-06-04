@@ -1,6 +1,8 @@
-## FUNCTIONAL IMPROVEMENTS
+### IMPROVEMENTS: `FUNCTIONAL`
 
-1. Add a function to reset validation
-2.
+1. ✅ Add a function to reset validation
+2. ❌ Remove repeated selector queries in `Formvlidator.js`
 
-## NON-FUNCTIONAL IMPROVEMENTS
+---
+
+### IMPROVEMENTS: `NON-FUNCTIONAL`
