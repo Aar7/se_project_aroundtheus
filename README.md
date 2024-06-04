@@ -48,7 +48,11 @@ _Minor_
    - Remove indication that globally-used class variables are private by removing underscores preceding the identifier names
      - Example: `_toggleSubmitButtonState()` -> `toggleSubmitButtonState()`
    - Remove repeated selector queries to save resources
-     - Add one-time selector queries to class constructor
+     - Add one-time selector queries to class constructors where possible
+
+---
+
+---
 
 ---
 
