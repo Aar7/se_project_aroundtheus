@@ -115,9 +115,8 @@ editButton.addEventListener("click", () => {
 });
 
 addCardButton.addEventListener("click", () => {
-  formValidators.add_card_form._toggleSubmitButtonState(
+  formValidators.add_card_form.toggleSubmitButtonState(
     [addCardModalTitleInput, addCardModalImagelinkInput],
-    createButton,
     formValidators.add_card_form._settings
   );
   openModal(addCardModal);

@@ -36,18 +36,19 @@ Where text may overflow their containers, special rules were implemented to ensu
 
 **_Recent changes_**
 
-> `06-3-2024`
+> `06-4-2024`
 
 _Major_
 
-1. Refactored `getCardElement(...)` into `Card.js` as a class
-2. Refactored methods and properties of `validation.js` into `FormValidator.js` as a class
+1. Refactor `toggleSubmitButtonState()` to comply with the Single Responsibility Principle
 
 _Minor_
 
 1. Refactor code
-   - Removed unnecessary variables
-2. Added `name` attributes to forms in modals to avoid using names with dashes
+   - Remove indication that globally-used class variables are private by removing underscores preceding the identifier names
+     - Example: `_toggleSubmitButtonState()` -> `toggleSubmitButtonState()`
+   - Remove repeated selector queries to save resources
+     - Add one-time selector queries to class constructor
 
 ---
 
