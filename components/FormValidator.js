@@ -47,6 +47,15 @@ export default class FormValidator {
     });
   }
 
+  _setEventHandlers() {
+    this._inputElements.forEach((inputElement) => {
+      inputElement.addEventListener("input", () => {
+        this._checkInputValidity(inputElement);
+        this.toggleSubmitButtonState();
+      });
+    });
+  }
+
   toggleSubmitButtonState() {
     if (this._hasValidInput(this._inputElements)) {
       this._submitButton.classList.add(this._settings.inactiveButtonClass);
@@ -57,16 +66,7 @@ export default class FormValidator {
     }
   }
 
-  _setEventHandlers() {
-    this._inputElements.forEach((inputElement) => {
-      inputElement.addEventListener("input", () => {
-        this._checkInputValidity(inputElement);
-        this.toggleSubmitButtonState();
-      });
-    });
-  }
-
-  _resetValidation() {
+  resetValidation() {
     this.toggleSubmitButtonState();
 
     this._inputElements.forEach((inputElement) => {

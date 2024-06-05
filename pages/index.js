@@ -112,14 +112,11 @@ editButton.addEventListener("click", () => {
   editModalAboutmeInput.value = sectionProfileInfoSubtitle.textContent;
 
   openModal(editProfileModal);
-  formValidators.edit_profile_form._resetValidation();
+  formValidators.edit_profile_form.resetValidation();
 });
 
 addCardButton.addEventListener("click", () => {
-  formValidators.add_card_form.toggleSubmitButtonState(
-    [addCardModalTitleInput, addCardModalImagelinkInput],
-    formValidators.add_card_form._settings
-  );
+  formValidators.add_card_form.toggleSubmitButtonState();
   openModal(addCardModal);
 });
 
