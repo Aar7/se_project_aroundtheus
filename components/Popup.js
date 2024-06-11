@@ -1,5 +1,7 @@
 export default class Popup {
-  constructor(popupSelector) {}
+  constructor(popupSelector) {
+    this._popupSelector = popupSelector;
+  }
 
   open() {
     // to be called in pre-existing event handlers in index.js

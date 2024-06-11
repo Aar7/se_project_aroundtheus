@@ -1,7 +1,11 @@
 class Section {
   // items -> array
   // renderer -> function that adds a single thing to the page
-  constructor({ items, renderer }, cardSelector) {}
+  constructor({ items, renderer }, cardSelector) {
+    this._items = items;
+    this._renderer = renderer;
+    this._cardSelector = cardSelector;
+  }
 
   renderItems() {
     // render all elements on the page

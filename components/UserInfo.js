@@ -1,6 +1,9 @@
 // create an instance of this in index.js and call its methods as required
 class UserInfo {
-  constructor(profileNameSelector, profileAboutMeSelector) {}
+  constructor(profileNameSelector, profileAboutMeSelector) {
+    this._profileNameSelector = profileNameSelector;
+    this._profileAboutMeSelector = profileAboutMeSelector;
+  }
 
   getUserInfo() {
     // returns an object containing user information

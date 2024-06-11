@@ -4,7 +4,10 @@ import Popup from "./Popup";
 //    call setEventListeners()
 // handleSubmit -> callback for when "submit" fires on the forms
 class PopupWithForm extends Popup {
-  constructor(handleSubmit, popupSelector) {}
+  constructor(handleSubmit, popupSelector) {
+    this._handleSubmit = handleSubmit;
+    this._popupSelector = popupSelector;
+  }
 
   _getInputValues() {
     // collect data from input fields and return them as an object
