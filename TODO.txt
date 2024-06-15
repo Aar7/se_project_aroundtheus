@@ -4,3 +4,6 @@ TODO:
 
 May 24, 2024
 - Change 'renderCards()' to call a loop of the initialCards array and create new 'Card' class for each one, passing the current array item, the card template 'DOM element', and the handleImageClick callback
+
+June 13, 2024
+- closemodal in Section.js needs to be defined in respective class
