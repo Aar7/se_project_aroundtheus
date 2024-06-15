@@ -1,3 +1,6 @@
+import "./index.css";
+import headerImgSrc from "../images/header-image.svg";
+import profileImgSrc from "../images/jacques-cousteau.jpg";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import { formValidators } from "../scripts/validation.js";
@@ -7,6 +10,10 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
+const headerImg = document.getElementById("header-image");
+const profileImg = document.getElementById("profile-image");
+headerImg.src = headerImgSrc;
+profileImg.src = profileImgSrc;
 const initialCards = [
   {
     name: "Yosemite Valley",
