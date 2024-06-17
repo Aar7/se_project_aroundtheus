@@ -8,32 +8,30 @@ import {
 export default class Section {
   // items -> array
   // renderer -> function that adds a single thing to the page
-  constructor({ items, renderer }, cardSelector) {
+  constructor({ items, renderer }, containerSelector) {
     this._items = items;
     this._renderer = renderer;
-    this._cardSelector = cardSelector;
+    // this._cardSelector = containerSelector;
+    this._containerElement = document.querySelector(containerSelector);
+    console.log(this._containerElement);
   }
 
   renderItems() {
-    // render all elements on the page
-    //    iterate through items array and call renderer() on each
-    // call once on page load
-    initialCards.forEach((card) => {
+    this._items.forEach((card) => {
       this._renderer(card);
     });
   }
 
   // same as callback in 'addCardForm' event listener
-  addItem(event) {
-    // takes a DOM element and adds it to the container
-    //    call when adding an individial card to the DOM
-    event.preventDefault();
+  addItem(element) {
+    // event.preventDefault();
     const card = {
       name: addCardModalTitleInput.value,
       link: addCardModalImagelinkInput.value,
     };
     this._renderer(card, "prepend");
+    // this._containerElement.prepend(element);
 
-    event.target.reset();
+    // event.target.reset();
   }
 }

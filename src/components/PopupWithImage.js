@@ -5,7 +5,6 @@ import Popup from "./Popup.js";
 export default class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
-    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   open(name, link) {

@@ -1,4 +1,3 @@
-import { editProfileForm, addCardForm } from "../utils/constants.js";
 import Popup from "./Popup.js";
 
 // create an instance of this class for each form-containing popup and
@@ -7,17 +6,18 @@ import Popup from "./Popup.js";
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleSubmit) {
     super(popupSelector);
-    // this._popupSelector = popupSelector;
     this._handleSubmit = handleSubmit;
-    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   _getInputValues() {
-    return Array.from(
-      document
-        .querySelector(this._popupSelector)
-        .querySelectorAll(".modal__input")
+    const inputElements = Array.from(
+      this._popupElement.querySelectorAll(".modal__input")
     );
+    const inputValues = {};
+    inputElements.forEach((input) => {
+      inputValues[input.name] = input.value;
+    });
+    return inputValues;
     // collect data from input fields and return them as an object
     //    returned object is passed tosubmission handler as an argument
   }
@@ -38,13 +38,12 @@ export default class PopupWithForm extends Popup {
   */
   // overridden from Popup parent class
   setEventListeners() {
-    document
-      .querySelector(this._popupSelector)
-      .addEventListener("submit", this._handleSubmit);
-    console.log(
-      "Popup: setEventListners(): this._popupSelector: ",
-      this._popupSelector
-    );
+    // this._popupElement.addEventListener("submit", this._handleSubmit);
+    this._popupElement.addEventListener("submit", this._handleSubmit);
+    this._popupElement.addEventListener("submit", (event) => {
+      event.preventDefault();
+      event.target.reset();
+    });
     super.setEventListeners();
     // OVERRIDING CODE
     //    add a 'submit' event listener to the form and call

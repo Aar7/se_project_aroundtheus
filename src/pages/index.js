@@ -25,7 +25,7 @@ profileImg.src = profileImgSrc;
 // CLASS INITIALISATIONS CLASS INITIALISATIONS CLASS INITIALISATIONS CLASS INITIALISATIONS
 const section = new Section(
   { items: initialCards, renderer: renderCard },
-  ".element"
+  ".elements__list"
 );
 const popupImage = new PopupWithImage("#open-card-modal");
 popupImage.setEventListeners();
@@ -35,21 +35,23 @@ const addNewCardPopup = new PopupWithForm(
   "#add-card-modal",
   handleNewCardSubmit
 );
-const profileInfo = new UserInfo(editModalNameInput, editModalAboutmeInput);
+const profileInfo = new UserInfo(
+  ".profile__profile-heading",
+  ".profile__subtitle"
+);
 
 // FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
 function handleImageClick(cardImage, cardName) {
   popupImage.open(cardName.textContent, cardImage.src);
 }
 
-function handleProfileSubmit(event) {
-  event.preventDefault();
+function handleProfileSubmit() {
   profileInfo.setUserInfo();
   editProfilePopup.close();
 }
 
-function handleNewCardSubmit(event) {
-  section.addItem(event);
+function handleNewCardSubmit(element) {
+  section.addItem(element);
   addNewCardPopup.close();
 }
 
@@ -62,8 +64,9 @@ function renderCard(card, method = "append") {
 // EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS
 // Click 'edit' button
 editButton.addEventListener("click", () => {
-  editModalNameInput.value = profileInfo.getUserInfo().userName;
-  editModalAboutmeInput.value = profileInfo.getUserInfo().userJob;
+  const { userName, userAbout } = profileInfo.getUserInfo();
+  editModalNameInput.value = userName;
+  editModalAboutmeInput.value = userAbout;
   editProfilePopup.open();
   formValidators.edit_profile_form.resetValidation();
 });

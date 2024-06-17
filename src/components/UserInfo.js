@@ -6,30 +6,26 @@ import {
 } from "../utils/constants.js";
 
 export default class UserInfo {
-  constructor(profileNameSelector, profileAboutMeSelector) {
-    this._profileNameSelector = profileNameSelector;
-    this._profileAboutMeSelector = profileAboutMeSelector;
+  constructor(nameSelector, aboutMeSelector) {
+    this._nameElement = document.querySelector(nameSelector);
+    this._aboutMeElement = document.querySelector(aboutMeSelector);
   }
 
   getUserInfo() {
-    // returns an object containing user information
-    // useful when it's necessary to display information about
-    //    the user on the open form
-    this._userInputs = {
-      userName: sectionProfileInfoHeading.textContent,
-      userJob: sectionProfileInfoSubtitle.textContent,
+    const userInfo = {
+      userName: this._nameElement.textContent,
+      userAbout: this._aboutMeElement.textContent,
     };
-    return this._userInputs;
+    console.log(this._aboutMeElement.textContent);
+    return userInfo;
   }
 
-  setUserInfo() {
-    // takes new user data and adds it to the page
-    // call after successful form submission
-    // this.getUserInfo();
-    // console.log(this._userInputs.userName);
-    // sectionProfileInfoHeading.textContent = this._userInputs.userName;
-    // sectionProfileInfoSubtitle.textContent = this._userInputs.userJob;
+  setUserInfo(/*{ name, about }*/) {
     sectionProfileInfoHeading.textContent = editModalNameInput.value;
+
     sectionProfileInfoSubtitle.textContent = editModalAboutmeInput.value;
+
+    // this._nameElement.textContent = name;
+    // this._aboutMeElement.textContent = about;
   }
 }
