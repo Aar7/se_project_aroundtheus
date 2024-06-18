@@ -25,12 +25,13 @@ export default class Section {
   // same as callback in 'addCardForm' event listener
   addItem(element) {
     // event.preventDefault();
-    const card = {
-      name: addCardModalTitleInput.value,
-      link: addCardModalImagelinkInput.value,
-    };
-    this._renderer(card, "prepend");
-    // this._containerElement.prepend(element);
+    // const card = {
+    //   name: addCardModalTitleInput.value,
+    //   link: addCardModalImagelinkInput.value,
+    // };
+    this._renderer(element, "prepend");
+    // console.log("ELEMENT: ", element);
+    // this._containerElement.prepend(this._renderer(element, "prepend"));
 
     // event.target.reset();
   }

@@ -7,6 +7,7 @@ export default class Card {
     /* Creates and assigns _handleImageClick
     the value handleImageClick
     passed to the Card upon creation */
+    console.log(`NAME: ${name}, LINK: ${link}`);
     this._name = name;
     this._link = link;
     this._cardSelector = cardSelector;
@@ -50,6 +51,7 @@ export default class Card {
 
   // returnCard: returns fully functional Card class with appropriate data populated in it
   returnCardElement() {
+    console.log("RETURNCARDELEMENT WORKS: ", this._name, this._link);
     this._setEventListeners();
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;

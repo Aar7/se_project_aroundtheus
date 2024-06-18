@@ -17,6 +17,7 @@ export default class PopupWithForm extends Popup {
     inputElements.forEach((input) => {
       inputValues[input.name] = input.value;
     });
+    console.log("GET INPUT VALUES: ", inputValues);
     return inputValues;
     // collect data from input fields and return them as an object
     //    returned object is passed tosubmission handler as an argument
@@ -38,9 +39,9 @@ export default class PopupWithForm extends Popup {
   */
   // overridden from Popup parent class
   setEventListeners() {
-    // this._popupElement.addEventListener("submit", this._handleSubmit);
-    this._popupElement.addEventListener("submit", this._handleSubmit);
     this._popupElement.addEventListener("submit", (event) => {
+      console.log("GETINPUTVALUE CALLED: ", this._getInputValues());
+      this._handleSubmit(this._getInputValues());
       event.preventDefault();
       event.target.reset();
     });

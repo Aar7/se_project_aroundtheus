@@ -61,7 +61,7 @@ export const addCardButton = document.querySelector(".profile__button-add");
 export const sectionProfileInfo = document.querySelector(
   ".profile__profile-info"
 );
-export const sectionProfileInfoHeading = sectionProfileInfo.querySelector(
+export const sectionProfileInfoHeading = document.querySelector(
   ".profile__profile-heading"
 );
 export const sectionProfileInfoSubtitle =

@@ -1,10 +1,3 @@
-import {
-  editModalNameInput,
-  editModalAboutmeInput,
-  sectionProfileInfoHeading,
-  sectionProfileInfoSubtitle,
-} from "../utils/constants.js";
-
 export default class UserInfo {
   constructor(nameSelector, aboutMeSelector) {
     this._nameElement = document.querySelector(nameSelector);
@@ -20,12 +13,12 @@ export default class UserInfo {
     return userInfo;
   }
 
-  setUserInfo(/*{ name, about }*/) {
-    sectionProfileInfoHeading.textContent = editModalNameInput.value;
+  setUserInfo({ username, aboutme }) {
+    // sectionProfileInfoHeading.textContent = name;
 
-    sectionProfileInfoSubtitle.textContent = editModalAboutmeInput.value;
+    // sectionProfileInfoSubtitle.textContent = about;
 
-    // this._nameElement.textContent = name;
-    // this._aboutMeElement.textContent = about;
+    this._nameElement.textContent = username;
+    this._aboutMeElement.textContent = aboutme;
   }
 }

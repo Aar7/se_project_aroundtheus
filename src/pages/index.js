@@ -45,20 +45,24 @@ function handleImageClick(cardImage, cardName) {
   popupImage.open(cardName.textContent, cardImage.src);
 }
 
-function handleProfileSubmit() {
-  profileInfo.setUserInfo();
+function handleProfileSubmit(data) {
+  profileInfo.setUserInfo(data);
   editProfilePopup.close();
 }
 
 function handleNewCardSubmit(element) {
+  console.log("ELEMENT ARGUMENT: ", element);
   section.addItem(element);
   addNewCardPopup.close();
 }
 
 // Render cards
 function renderCard(card, method = "append") {
-  const cardElement = new Card(card, "#add-elements", handleImageClick);
-  elementsList[method](cardElement.returnCardElement());
+  const cardClass = new Card(card, "#add-elements", handleImageClick);
+  // cardClass.returnCardElement();
+  // section.addItem(card);
+
+  elementsList[method](cardClass.returnCardElement());
 }
 
 // EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS
