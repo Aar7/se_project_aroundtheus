@@ -2,12 +2,11 @@ import "./index.css";
 import headerImgSrc from "../images/header-image.svg";
 import profileImgSrc from "../images/jacques-cousteau.jpg";
 import Card from "../components/Card.js";
-import FormValidator from "../components/FormValidator.js";
+// import FormValidator from "../components/FormValidator.js";
 import { formValidators } from "../scripts/validation.js";
 import Section from "../components/Section.js";
 import {
   initialCards,
-  elementsList,
   editModalNameInput,
   editModalAboutmeInput,
   editButton,
@@ -50,19 +49,24 @@ function handleProfileSubmit(data) {
   editProfilePopup.close();
 }
 
-function handleNewCardSubmit(element) {
-  console.log("ELEMENT ARGUMENT: ", element);
-  section.addItem(element);
+function handleNewCardSubmit(data) {
+  console.log("ELEMENT ARGUMENT: ", data);
+  renderCard(data, "prepend");
   addNewCardPopup.close();
 }
 
 // Render cards
 function renderCard(card, method = "append") {
-  const cardClass = new Card(card, "#add-elements", handleImageClick);
-  // cardClass.returnCardElement();
-  // section.addItem(card);
+  const cardProperties = Object.values(card);
+  const cardClass = new Card(
+    { name: cardProperties[0], link: cardProperties[1] },
+    "#add-elements",
+    handleImageClick
+  );
+  //
+  section.addItem(cardClass.returnCardElement(), method);
 
-  elementsList[method](cardClass.returnCardElement());
+  // elementsList[method](cardClass.returnCardElement());
 }
 
 // EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS

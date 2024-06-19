@@ -1,10 +1,3 @@
-import {
-  addCardModalTitleInput,
-  addCardModalImagelinkInput,
-  initialCards,
-  addCardModal,
-} from "../utils/constants.js";
-
 export default class Section {
   // items -> array
   // renderer -> function that adds a single thing to the page
@@ -23,15 +16,16 @@ export default class Section {
   }
 
   // same as callback in 'addCardForm' event listener
-  addItem(element) {
+  addItem(data, method) {
     // event.preventDefault();
     // const card = {
     //   name: addCardModalTitleInput.value,
     //   link: addCardModalImagelinkInput.value,
     // };
-    this._renderer(element, "prepend");
+    // console.log("addItem() ELEMENT: ", element);
+    // this._renderer(element, "prepend");
     // console.log("ELEMENT: ", element);
-    // this._containerElement.prepend(this._renderer(element, "prepend"));
+    this._containerElement[method](data);
 
     // event.target.reset();
   }

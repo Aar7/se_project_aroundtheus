@@ -40,7 +40,6 @@ export default class PopupWithForm extends Popup {
   // overridden from Popup parent class
   setEventListeners() {
     this._popupElement.addEventListener("submit", (event) => {
-      console.log("GETINPUTVALUE CALLED: ", this._getInputValues());
       this._handleSubmit(this._getInputValues());
       event.preventDefault();
       event.target.reset();
