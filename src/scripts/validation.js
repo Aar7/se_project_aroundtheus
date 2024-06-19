@@ -13,6 +13,7 @@ const configObj = {
 const formElements = Array.from(
   document.querySelectorAll(configObj.formSelector)
 );
+console.log("formElements: ", formElements);
 
 export const formValidators = {}; // object containing FormValidation classes
 

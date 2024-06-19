@@ -57,16 +57,12 @@ function handleNewCardSubmit(data) {
 
 // Render cards
 function renderCard(card, method = "append") {
-  const cardProperties = Object.values(card);
   const cardClass = new Card(
-    { name: cardProperties[0], link: cardProperties[1] },
+    { name: card["cardName"], link: card["link"] },
     "#add-elements",
     handleImageClick
   );
-  //
   section.addItem(cardClass.returnCardElement(), method);
-
-  // elementsList[method](cardClass.returnCardElement());
 }
 
 // EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS
@@ -79,15 +75,15 @@ editButton.addEventListener("click", () => {
   formValidators.edit_profile_form.resetValidation();
 });
 
+console.log("FormValidators: ", formValidators);
 addCardButton.addEventListener("click", () => {
   formValidators.add_card_form.toggleSubmitButtonState();
   addNewCardPopup.open();
 });
 
-// Click 'save' button in edit modal
+// Form 'submit' handlers
 editProfilePopup.setEventListeners();
-
-// Click 'create' button in add-card modal
 addNewCardPopup.setEventListeners();
 
+// Generate preset cards
 section.renderItems();
