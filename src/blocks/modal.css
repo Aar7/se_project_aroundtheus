@@ -122,11 +122,11 @@
   cursor: pointer;
 }
 
-.modal__save:hover {
+/* .modal__save:hover {
   opacity: 0.8;
-}
+} */
 
-.modal__save:not(:disabled) {
+.modal__save:hover:not(:disabled) {
   opacity: 0.8;
 }
 
