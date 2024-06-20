@@ -18,15 +18,13 @@ export default class PopupWithForm extends Popup {
     return inputValues;
   }
 
-  open() {
-    super.open();
-    document.addEventListener("keydown", this._handleEscClose);
-  }
+  // open() {
+  //   super.open();
+  // }
 
-  close() {
-    super.close();
-    document.removeEventListener("keydown", this._handleEscClose);
-  }
+  // close() {
+  //   super.close();
+  // }
 
   setEventListeners() {
     this._popupElement.addEventListener("submit", (event) => {
