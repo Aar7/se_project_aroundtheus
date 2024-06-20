@@ -15,8 +15,6 @@ export default class PopupWithImage extends Popup {
     // add image description to popup
     modalImageTitle.textContent = name;
     // to be called in image click handler in index.js
-
-    document.addEventListener("keydown", this._handleEscClose);
     super.open();
   }
 }

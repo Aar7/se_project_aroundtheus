@@ -1,6 +1,5 @@
 .modal {
   position: fixed;
-  /* display: none; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,54 +63,17 @@
   flex-direction: column;
 }
 
-/* .modal__title {
-  margin: 0 0 30px 0;
-  padding: 0 0 13px 0;
-  border: none;
-  border-bottom: solid rgba(0, 0, 0, 0.2) 1px;
-
-  font-family: "Inter", "Arial", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-}
-
-.modal__description {
-  margin: 0 0 48px 0;
-  padding: 0 0 13px 0;
-  border: none;
-  border-bottom: solid rgba(0, 0, 0, 0.2) 1px;
-
-  font-family: "Inter", "Arial", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-} */
-
 .modal__input {
   border: none;
   max-width: 100%;
   border-bottom: solid rgba(0, 0, 0, 0.2) 1px;
   padding: 0 0 13px 0;
 }
-/* .modal__input {
-  margin: 0 0 48px 0;
-  padding: 0 0 13px 0;
-  border: none;
-  border-bottom: solid rgba(0, 0, 0, 0.2) 1px;
-
-  font-family: "Inter", "Arial", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-} */
 .modal__label {
   display: flex;
   flex-direction: column;
   margin: 0 0 18px 0;
-  /* padding: 0 0 13px 0; */
   border: none;
-  /* border-bottom: solid rgba(0, 0, 0, 0.2) 1px; */
 
   font-family: "Inter", "Arial", sans-serif;
   font-weight: 400;
@@ -119,15 +81,11 @@
   line-height: 17px;
 }
 
-/* .modal__input:last-of-type {
-  margin-bottom: 0;
-} */
 .modal__label:last-of-type {
   margin-bottom: 0;
 }
 
 .modal__error {
-  /* width: 164px; */
   width: 100%;
   height: 12px;
   padding: 5px 0 0 0;
@@ -168,6 +126,10 @@
   opacity: 0.8;
 }
 
+.modal__save:not(:disabled) {
+  opacity: 0.8;
+}
+
 .modal__button_disabled {
   cursor: default;
   opacity: 0.2;
@@ -176,17 +138,17 @@
   border: solid #000 1px;
 }
 
-#open-card-modal > .modal__container {
+.modal__container_background_transparent {
   background: transparent;
   padding: 0;
 }
 
-#open-card-modal > .modal__container > .modal__image {
+.modal__image {
   max-width: 75vh;
   max-height: 75vh;
 }
 
-#open-card-modal > .modal__container > .modal__image-title {
+.modal__image-title {
   margin: 10px 0 0 0;
   font-size: 12px;
   line-height: 15px;

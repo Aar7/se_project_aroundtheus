@@ -2,7 +2,6 @@ import "./index.css";
 import headerImgSrc from "../images/header-image.svg";
 import profileImgSrc from "../images/jacques-cousteau.jpg";
 import Card from "../components/Card.js";
-// import FormValidator from "../components/FormValidator.js";
 import { formValidators } from "../scripts/validation.js";
 import Section from "../components/Section.js";
 import {
