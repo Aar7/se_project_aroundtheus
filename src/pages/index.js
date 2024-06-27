@@ -14,6 +14,7 @@ import {
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
 
 const headerImg = document.getElementById("header-image");
 headerImg.src = headerImgSrc;
@@ -37,6 +38,14 @@ const profileInfo = new UserInfo(
   ".profile__profile-heading",
   ".profile__subtitle"
 );
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1/",
+  headers: {
+    authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
+    "Content-Type": "application/json",
+  },
+});
 
 // FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
 function handleImageClick(cardImage, cardName) {
