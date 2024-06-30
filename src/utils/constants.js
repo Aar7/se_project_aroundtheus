@@ -1,4 +1,4 @@
-export const initialCards = [
+/* export const initialCards = [
   {
     cardName: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -23,7 +23,7 @@ export const initialCards = [
     cardName: "Lago di Braies",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
-];
+]; */
 
 // NODES NODES NODES NODES
 export const elementsList = document.querySelector(".elements__list");
@@ -41,29 +41,29 @@ export const modalImageTitle = openCardModal.querySelector(
 
 // form nodes
 export const editProfileForm = document.forms["edit-profile-form"];
-export const addCardForm = document.forms["add-card-form"];
+// export const addCardForm = document.forms["add-card-form"];
 
 // input nodes
 export const editModalNameInput =
   editProfileForm.querySelector("[name = userName]");
 export const editModalAboutmeInput =
   editProfileForm.querySelector("[name = aboutMe]");
-export const addCardModalTitleInput =
-  addCardForm.querySelector("[name = name]");
-export const addCardModalImagelinkInput =
-  addCardForm.querySelector("[name = link]");
+// export const addCardModalTitleInput =
+//   addCardForm.querySelector("[name = name]");
+// export const addCardModalImagelinkInput =
+//   addCardForm.querySelector("[name = link]");
 
 // button nodes
 export const editButton = document.querySelector(".profile__button-edit");
 export const addCardButton = document.querySelector(".profile__button-add");
 // export const createButton = addCardForm.querySelector(".modal__save");
 
-export const sectionProfileInfo = document.querySelector(
-  ".profile__profile-info"
-);
-export const sectionProfileInfoHeading = document.querySelector(
-  ".profile__profile-heading"
-);
-export const sectionProfileInfoSubtitle =
-  sectionProfileInfo.querySelector(".profile__subtitle");
-export const closeButtons = document.querySelectorAll(".modal__close");
+// export const sectionProfileInfo = document.querySelector(
+//   ".profile__profile-info"
+// );
+// export const sectionProfileInfoHeading = document.querySelector(
+//   ".profile__profile-heading"
+// );
+// export const sectionProfileInfoSubtitle =
+//   sectionProfileInfo.querySelector(".profile__subtitle");
+// export const closeButtons = document.querySelectorAll(".modal__close");

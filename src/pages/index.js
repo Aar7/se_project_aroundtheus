@@ -22,10 +22,10 @@ const profileImg = document.getElementById("profile-image");
 profileImg.src = profileImgSrc;
 
 // CLASS INITIALISATIONS CLASS INITIALISATIONS CLASS INITIALISATIONS CLASS INITIALISATIONS
-const section = new Section(
-  { items: initialCards, renderer: renderCard },
-  ".elements__list"
-);
+// const section = new Section(
+//   { items: initialCards, renderer: renderCard },
+//   ".elements__list"
+// );
 const popupImage = new PopupWithImage("#open-card-modal");
 popupImage.setEventListeners();
 
@@ -47,6 +47,15 @@ const api = new Api({
   },
 });
 
+let section;
+api.getInitialCards().then((cards) => {
+  section = new Section(
+    { items: cards, renderer: renderCard },
+    ".elements__list"
+  );
+  section.renderItems();
+});
+
 // FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
 function handleImageClick(cardImage, cardName) {
   popupImage.open(cardName.textContent, cardImage.src);
@@ -63,10 +72,14 @@ function handleNewCardSubmit(data) {
   addNewCardPopup.close();
 }
 
-// Render cards
+/**
+ * Renders cards using the given params
+ * @param {*} card object with 'name' and 'link' properties
+ * @param {*} method method that takes either 'append' or 'prepend' depending on where the card should go in the DOM
+ */
 function renderCard(card, method = "append") {
   const cardClass = new Card(
-    { name: card["cardName"], link: card["link"] },
+    { name: card["name"], link: card["link"] },
     "#add-elements",
     handleImageClick
   );
@@ -83,7 +96,7 @@ editButton.addEventListener("click", () => {
   formValidators.edit_profile_form.resetValidation();
 });
 
-console.log("FormValidators: ", formValidators);
+// console.log("FormValidators: ", formValidators);
 addCardButton.addEventListener("click", () => {
   formValidators.add_card_form.toggleSubmitButtonState();
   addNewCardPopup.open();
@@ -94,4 +107,5 @@ editProfilePopup.setEventListeners();
 addNewCardPopup.setEventListeners();
 
 // Generate preset cards
-section.renderItems();
+// section.renderItems();
+// section.renderItems(api.getInitialCards());
