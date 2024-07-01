@@ -70,6 +70,7 @@ function handleImageClick(cardImage, cardName) {
 
 function handleProfileSubmit(data) {
   profileInfo.setUserInfo(data);
+  api.editProfile(data);
   editProfilePopup.close();
 }
 
