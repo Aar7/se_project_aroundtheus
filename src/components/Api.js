@@ -5,6 +5,18 @@ export default class Api {
   }
 
   /**
+   *
+   * @returns user 'name' and 'about'
+   */
+  async getUserInformation() {
+    const res = await fetch(`${this._options.baseUrl}/users/me`, this._options);
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error <code>: ${res.status}`);
+  }
+
+  /**
    * From Api.js
    *
    * Fetches the /cards endpoint and converts results into
@@ -13,19 +25,6 @@ export default class Api {
    */
   async getInitialCards() {
     return fetch(`${this._options.baseUrl}/cards`, this._options)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Error <code>: ${res.status}`);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
-
-  async getUserInformation() {
-    return fetch(`${this._options.baseUrl}/users`, this._options)
       .then((res) => {
         if (res.ok) {
           return res.json();

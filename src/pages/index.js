@@ -10,6 +10,8 @@ import {
   editModalAboutmeInput,
   editButton,
   addCardButton,
+  sectionProfileInfoHeading,
+  sectionProfileInfoSubtitle,
 } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -45,6 +47,11 @@ const api = new Api({
     authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
     "Content-Type": "application/json",
   },
+});
+
+api.getUserInformation().then((data) => {
+  sectionProfileInfoHeading.textContent = data.name;
+  sectionProfileInfoSubtitle.textContent = data.about;
 });
 
 let section;

@@ -58,12 +58,12 @@ export const editButton = document.querySelector(".profile__button-edit");
 export const addCardButton = document.querySelector(".profile__button-add");
 // export const createButton = addCardForm.querySelector(".modal__save");
 
-// export const sectionProfileInfo = document.querySelector(
-//   ".profile__profile-info"
-// );
-// export const sectionProfileInfoHeading = document.querySelector(
-//   ".profile__profile-heading"
-// );
-// export const sectionProfileInfoSubtitle =
-//   sectionProfileInfo.querySelector(".profile__subtitle");
+export const sectionProfileInfo = document.querySelector(
+  ".profile__profile-info"
+);
+export const sectionProfileInfoHeading = document.querySelector(
+  ".profile__profile-heading"
+);
+export const sectionProfileInfoSubtitle =
+  sectionProfileInfo.querySelector(".profile__subtitle");
 // export const closeButtons = document.querySelectorAll(".modal__close");
