@@ -27,6 +27,7 @@ export default class Api {
     return fetch(`${this._options.baseUrl}/cards`, this._options)
       .then((res) => {
         if (res.ok) {
+          console.log("res", res);
           return res.json();
         }
         return Promise.reject(`Error <code>: ${res.status}`);
@@ -46,6 +47,24 @@ export default class Api {
       body: JSON.stringify({
         name: userName,
         about: aboutMe,
+      }),
+    });
+    if (res.ok) {
+      return res.json();
+    }
+    throw new Error(`Error code: ${res.status}`);
+  }
+
+  async createCard({ cardName, link }) {
+    const res = fetch(`${this._options.baseUrl}/cards`, {
+      method: "POST",
+      headers: {
+        authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: cardName,
+        link: link,
       }),
     });
     if (res.ok) {

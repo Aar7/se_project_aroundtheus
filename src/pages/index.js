@@ -69,6 +69,7 @@ function handleImageClick(cardImage, cardName) {
 }
 
 function handleProfileSubmit(data) {
+  console.log("Profile Submit data: ", data);
   profileInfo.setUserInfo(data);
   api.editProfile(data);
   editProfilePopup.close();
@@ -77,17 +78,18 @@ function handleProfileSubmit(data) {
 function handleNewCardSubmit(data) {
   console.log("ELEMENT ARGUMENT: ", data);
   renderCard(data, "prepend");
+  api.createCard(data);
   addNewCardPopup.close();
 }
 
 /**
  * Renders cards using the given params
- * @param {*} card object with 'name' and 'link' properties
+ * @param {*} inputs object with 'name' and 'link' properties
  * @param {*} method method that takes either 'append' or 'prepend' depending on where the card should go in the DOM
  */
-function renderCard(card, method = "append") {
+function renderCard(inputs, method = "append") {
   const cardClass = new Card(
-    { name: card["name"], link: card["link"] },
+    { name: inputs["cardName"], link: inputs["link"] },
     "#add-elements",
     handleImageClick
   );
