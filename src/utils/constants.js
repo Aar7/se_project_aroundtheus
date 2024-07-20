@@ -57,6 +57,9 @@ export const editModalAboutmeInput =
 export const editButton = document.querySelector(".profile__button-edit");
 export const addCardButton = document.querySelector(".profile__button-add");
 // export const createButton = addCardForm.querySelector(".modal__save");
+export const deleteCardButton = document.querySelector(
+  ".element__delete-card-button"
+);
 
 export const sectionProfileInfo = document.querySelector(
   ".profile__profile-info"

@@ -1,9 +1,9 @@
 // Replaces functionality of getCardElement
 export default class Card {
-  // data: OBJECT with card tect and link to image
+  // data: OBJECT with card text and link to image
   // cardSelector: selector STRING for the corresponding TEMPLATE element
   // handleImageClick: FUNCTION handling the opening of the preview picture modal
-  constructor({ name, link }, cardSelector, handleImageClick) {
+  constructor({ name, link }, cardSelector, handleImageClick, handleDelete) {
     /* Creates and assigns _handleImageClick
     the value handleImageClick
     passed to the Card upon creation */
@@ -11,6 +11,7 @@ export default class Card {
     this._link = link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._handleDelete = handleDelete;
     this._cardElement = document
       .querySelector(this._cardSelector)
       .content.querySelector(".element")
@@ -24,6 +25,7 @@ export default class Card {
     this._cardDeleteButton = this._cardElement.querySelector(
       ".element__delete-card-button"
     );
+    this._cardDeleteModal = document.getElementById("delete-card-modal");
   }
 
   _setEventListeners() {
@@ -32,7 +34,7 @@ export default class Card {
     });
 
     this._cardDeleteButton.addEventListener("click", () => {
-      this._handleDelete();
+      this._openDeleteConfirmation();
     });
 
     this._cardImage.addEventListener("click", () => {
@@ -40,8 +42,8 @@ export default class Card {
     });
   }
 
-  _handleDelete() {
-    this._cardElement.remove();
+  _openDeleteConfirmation() {
+    this._cardDeleteModal.classList.add("modal_opened");
   }
 
   _handleLike() {

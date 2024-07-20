@@ -10,6 +10,7 @@ import {
   editModalAboutmeInput,
   editButton,
   addCardButton,
+  deleteCardButton,
   sectionProfileInfoHeading,
   sectionProfileInfoSubtitle,
 } from "../utils/constants.js";
@@ -17,6 +18,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
+import PopupWithDelete from "../components/PopupWithDelete.js";
 
 const headerImg = document.getElementById("header-image");
 headerImg.src = headerImgSrc;
@@ -36,6 +38,7 @@ const addNewCardPopup = new PopupWithForm(
   "#add-card-modal",
   handleNewCardSubmit
 );
+// const deleteCardPopup = new PopupWithDelete("#delete-card-modal");
 const profileInfo = new UserInfo(
   ".profile__profile-heading",
   ".profile__subtitle"
@@ -64,10 +67,20 @@ api.getInitialCards().then((cards) => {
 });
 
 // FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
+/**
+ * Opens the image preview modal
+ * @param {DOM Element} cardImage the DOM Element with the card's image
+ * @param {DOM Element} cardName the DOM Element with the card's title/name
+ */
 function handleImageClick(cardImage, cardName) {
   popupImage.open(cardName.textContent, cardImage.src);
 }
 
+/**
+ * Sets the submitted information to the page profile section
+ * and sends the data through the API class to the server
+ * @param {Array} data
+ */
 function handleProfileSubmit(data) {
   console.log("Profile Submit data: ", data);
   profileInfo.setUserInfo(data);
@@ -76,16 +89,31 @@ function handleProfileSubmit(data) {
 }
 
 function handleNewCardSubmit(data) {
+  /*
+    Assign api.createCard(data) to a variable which
+    will store the returned object from the server
+    after the card is created.
+    Then, pass the _id field to the renderCard function call.
+    (Need to redefine the function to enable handling
+    of this new parameter, which is useful in deleting and
+    referencing the card)
+  */
   console.log("ELEMENT ARGUMENT: ", data);
+  const cardObject = api.createCard(data);
+  console.log("cardObject", cardObject);
   renderCard(data, "prepend");
-  api.createCard(data);
   addNewCardPopup.close();
+}
+
+function handleCardDelete(cardId) {
+  // delete card from the DOM
+  // delete card from the server
 }
 
 /**
  * Renders cards using the given params
- * @param {*} inputs object with 'name' and 'link' properties
- * @param {*} method method that takes either 'append' or 'prepend' depending on where the card should go in the DOM
+ * @param {object} inputs object with 'name' and 'link' properties
+ * @param {string} method that takes either 'append' or 'prepend' depending on where the card should go in the DOM
  */
 function renderCard(inputs, method = "append") {
   const cardClass = new Card(
@@ -106,15 +134,17 @@ editButton.addEventListener("click", () => {
   formValidators.edit_profile_form.resetValidation();
 });
 
-// console.log("FormValidators: ", formValidators);
 addCardButton.addEventListener("click", () => {
   formValidators.add_card_form.toggleSubmitButtonState();
   addNewCardPopup.open();
 });
 
+// deleteCardButton.addEventListener("click", )
+
 // Form 'submit' handlers
 editProfilePopup.setEventListeners();
 addNewCardPopup.setEventListeners();
+// deleteCardPopup.setEventListeners();
 
 // Generate preset cards
 // section.renderItems();

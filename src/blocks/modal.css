@@ -40,9 +40,9 @@
   line-height: 30px;
 }
 
-.modal__header_align_margin {
+/* .modal__header_align_margin {
   margin-bottom: 0;
-}
+} */
 
 .modal__close {
   position: absolute;
