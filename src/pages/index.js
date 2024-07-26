@@ -5,12 +5,12 @@ import Card from "../components/Card.js";
 import { formValidators } from "../scripts/validation.js";
 import Section from "../components/Section.js";
 import {
-  initialCards,
   editModalNameInput,
   editModalAboutmeInput,
   editButton,
   addCardButton,
   deleteCardButton,
+  deleteConfirmButton,
   sectionProfileInfoHeading,
   sectionProfileInfoSubtitle,
 } from "../utils/constants.js";
@@ -30,6 +30,7 @@ profileImg.src = profileImgSrc;
 //   { items: initialCards, renderer: renderCard },
 //   ".elements__list"
 // );
+const cardDeleteConfirmButton = document.querySelector(".modal__delete-button");
 const popupImage = new PopupWithImage("#open-card-modal");
 popupImage.setEventListeners();
 
@@ -38,7 +39,11 @@ const addNewCardPopup = new PopupWithForm(
   "#add-card-modal",
   handleNewCardSubmit
 );
-// const deleteCardPopup = new PopupWithDelete("#delete-card-modal");
+const deleteCardPopup = new PopupWithDelete(
+  "#delete-card-modal",
+  handleCardDelete
+);
+
 const profileInfo = new UserInfo(
   ".profile__profile-heading",
   ".profile__subtitle"
@@ -99,28 +104,42 @@ function handleNewCardSubmit(data) {
     referencing the card)
   */
   console.log("ELEMENT ARGUMENT: ", data);
-  const cardObject = api.createCard(data);
-  console.log("cardObject", cardObject);
-  renderCard(data, "prepend");
+  // const cardObject = api.createCard(data);
+  api.createCard(data).then((result) => {
+    console.log("result._id", result._id);
+    renderCard(data, "prepend", result._id);
+  });
   addNewCardPopup.close();
 }
 
 function handleCardDelete(cardId) {
-  // delete card from the DOM
-  // delete card from the server
+  deleteCardPopup.open();
+  deleteConfirmButton.addEventListener("click", () => {
+    // console.log("Logging 'this'");
+    // console.log(this);
+    // console.log("Logging 'this' complete");
+    this._cardElement.remove();
+    api.deleteCard(cardId);
+    deleteCardPopup.close();
+  });
 }
+
+function handleCardDeleteConfirm() {}
 
 /**
  * Renders cards using the given params
  * @param {object} inputs object with 'name' and 'link' properties
  * @param {string} method that takes either 'append' or 'prepend' depending on where the card should go in the DOM
  */
-function renderCard(inputs, method = "append") {
+function renderCard(inputs, method = "append", cardId) {
   const cardClass = new Card(
     { name: inputs["cardName"], link: inputs["link"] },
     "#add-elements",
-    handleImageClick
+    cardId,
+    handleImageClick,
+    handleCardDelete
   );
+  console.log("cardObject:renderCard(): ", cardId);
   section.addItem(cardClass.returnCardElement(), method);
 }
 
@@ -139,12 +158,12 @@ addCardButton.addEventListener("click", () => {
   addNewCardPopup.open();
 });
 
-// deleteCardButton.addEventListener("click", )
+// cardDeleteConfirmButton.addEventListener("click", handleCardDelete);
 
 // Form 'submit' handlers
 editProfilePopup.setEventListeners();
 addNewCardPopup.setEventListeners();
-// deleteCardPopup.setEventListeners();
+deleteCardPopup.setEventListeners();
 
 // Generate preset cards
 // section.renderItems();

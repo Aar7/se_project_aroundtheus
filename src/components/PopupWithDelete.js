@@ -7,11 +7,12 @@ export default class PopupWithDelete extends Popup {
   }
 
   setEventListeners() {
-    // this._popupElement.addEventListener("submit", (event) => {
-    //   this._handleSubmit(this._getInputValues());
-    //   event.preventDefault();
-    //   event.target.reset();
-    // });
+    this._popupElement.addEventListener("submit", (event) => {
+      this._handleConfirm;
+      event.preventDefault();
+      event.target.reset();
+    });
+
     super.setEventListeners();
   }
 }

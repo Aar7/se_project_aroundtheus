@@ -66,44 +66,76 @@ export default class Api {
     throw new Error(`Error code: ${res.status}`);
   }
 
+  // async createCard({ cardName, link }) {
+  //   const res = await fetch(`${this._options.baseUrl}/cards`, {
+  //     method: "POST",
+  //     headers: {
+  //       authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       name: cardName,
+  //       link: link,
+  //     }),
+  //   })
+  //     .then((res) => {
+  //       if (res.ok) {
+  //         return res.json();
+  //       } else {
+  //         throw new Error(`Error code: ${res.status}`);
+  //       }
+  //     })
+  //     .then((data) => {
+  //       return data;
+  //     });
+  // }
+
   /**
-   *
+   * Sends a POST request to the server with the card
+   * name and link to the photo, adding it to the array
+   * of card-objects on the server.
    * @param {object} `{cardName, link}`
    * @returns `Promise`
    */
   async createCard({ cardName, link }) {
-    const res = await fetch(`${this._options.baseUrl}/cards`, {
+    return fetch(`${this._options.baseUrl}/cards`, {
       method: "POST",
       headers: {
         authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: cardName,
-        link: link,
-      }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error(`Error code: ${res.status}`);
-      }
-    });
+      body: JSON.stringify({ name: cardName, link: link }),
+    })
+      .then((res) => {
+        console.log("Fetch response:", res); // Log response
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(new Error(`Error code: ${res.status}`));
+        }
+      })
+      .then((data) => {
+        console.log("Fetch data:", data); // Log data
+        return data;
+      })
+      .catch((err) => {
+        console.error("Fetch error:", err);
+        throw err;
+      });
   }
 
-  // async deleteCard(){
-  //   const res = {
-  //     method: "DELETE",
-  //     headers: {
-  //       authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
-  //       "Content-Type": "application/json"
-  //     }
-  //   }
-  //   if(res.ok) {
-  //     return res.json();
-  //   }
-
-  // }
+  async deleteCard(cardId) {
+    const res = fetch(`${this._options.baseUrl}cards/${cardId}`, {
+      method: "DELETE",
+      headers: {
+        authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
+        "Content-Type": "application/json",
+      },
+    });
+    if (res.ok) {
+      return res.json();
+    }
+  }
 
   // renderCards() {
   //   return Promise.all(/*cards to render, array of fn calls for getting user information*/);

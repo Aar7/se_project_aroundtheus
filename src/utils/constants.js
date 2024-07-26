@@ -60,6 +60,9 @@ export const addCardButton = document.querySelector(".profile__button-add");
 export const deleteCardButton = document.querySelector(
   ".element__delete-card-button"
 );
+export const deleteConfirmButton = document.querySelector(
+  ".modal__delete-button"
+);
 
 export const sectionProfileInfo = document.querySelector(
   ".profile__profile-info"

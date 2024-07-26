@@ -3,17 +3,21 @@ export default class Card {
   // data: OBJECT with card text and link to image
   // cardSelector: selector STRING for the corresponding TEMPLATE element
   // handleImageClick: FUNCTION handling the opening of the preview picture modal
-  constructor({ name, link }, cardSelector, handleImageClick, handleDelete) {
-    /* Creates and assigns _handleImageClick
-    the value handleImageClick
-    passed to the Card upon creation */
+  constructor(
+    { name, link },
+    cardSelector,
+    cardId,
+    handleImageClick,
+    handleDelete
+  ) {
     this._name = name;
     this._link = link;
+    this._cardId = cardId;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDelete = handleDelete;
     this._cardElement = document
-      .querySelector(this._cardSelector)
+      .querySelector(cardSelector)
       .content.querySelector(".element")
       .cloneNode(true);
 
@@ -26,6 +30,11 @@ export default class Card {
       ".element__delete-card-button"
     );
     this._cardDeleteModal = document.getElementById("delete-card-modal");
+    // console.log("Card constructor - cardObject: ", cardObject);
+    // console.log("------");
+    // this._cardDeleteConfirmButton = document.querySelector(
+    //   ".modal__delete-button"
+    // );
   }
 
   _setEventListeners() {
@@ -33,8 +42,11 @@ export default class Card {
       this._handleLike();
     });
 
+    // this._cardDeleteButton.addEventListener("click", () => {
+    //   this._openDeleteConfirmation();
+    // });
     this._cardDeleteButton.addEventListener("click", () => {
-      this._openDeleteConfirmation();
+      this._handleDelete();
     });
 
     this._cardImage.addEventListener("click", () => {
@@ -49,6 +61,14 @@ export default class Card {
   _handleLike() {
     this._cardLikeButton.classList.toggle("element__like-button_active");
   }
+
+  /**
+   *
+   */
+  // async _handleDelete() {
+  //   const res = await fetch;
+  //   this._cardElement.remove();
+  // }
 
   // returnCard: returns fully functional Card class with appropriate data populated in it
   returnCardElement() {
