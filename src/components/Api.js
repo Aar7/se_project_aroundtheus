@@ -137,6 +137,45 @@ export default class Api {
     }
   }
 
+  async likeCard(cardId) {
+    const res = fetch(`${this._options.baseUrl}cards/${cardId}/likes`, {
+      method: "PUT",
+      headers: {
+        authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
+        "Content-Type": "application/json",
+      },
+      body: {
+        _isLiked: true,
+      },
+    });
+  }
+
+  async dislikeCard(cardId) {
+    const res = fetch(`${this._options.baseUrl}cards/${cardId}/likes`, {
+      method: "DELETE",
+      headers: {
+        authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
+  async avatarChange(data) {
+    const res = fetch(`${this._options.baseUrl}users/me/avatar`, {
+      method: "PATCH",
+      headers: {
+        authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
+        "Content-Type": "application/json",
+      },
+      body: {
+        avatar: data.avatarLink,
+      },
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    });
+  }
   // renderCards() {
   //   return Promise.all(/*cards to render, array of fn calls for getting user information*/);
   // }

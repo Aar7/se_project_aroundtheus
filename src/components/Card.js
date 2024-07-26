@@ -8,7 +8,8 @@ export default class Card {
     cardSelector,
     cardId,
     handleImageClick,
-    handleDelete
+    handleDelete,
+    handleCardLike
   ) {
     this._name = name;
     this._link = link;
@@ -16,6 +17,7 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDelete = handleDelete;
+    this._handleLike = handleCardLike;
     this._cardElement = document
       .querySelector(cardSelector)
       .content.querySelector(".element")
@@ -54,13 +56,13 @@ export default class Card {
     });
   }
 
-  _openDeleteConfirmation() {
-    this._cardDeleteModal.classList.add("modal_opened");
-  }
+  // _openDeleteConfirmation() {
+  //   this._cardDeleteModal.classList.add("modal_opened");
+  // }
 
-  _handleLike() {
-    this._cardLikeButton.classList.toggle("element__like-button_active");
-  }
+  // _handleLike() {
+  //   this._cardLikeButton.classList.toggle("element__like-button_active");
+  // }
 
   /**
    *

@@ -9,8 +9,8 @@ import {
   editModalAboutmeInput,
   editButton,
   addCardButton,
-  deleteCardButton,
   deleteConfirmButton,
+  editAvatarButton,
   sectionProfileInfoHeading,
   sectionProfileInfoSubtitle,
 } from "../utils/constants.js";
@@ -26,10 +26,6 @@ const profileImg = document.getElementById("profile-image");
 profileImg.src = profileImgSrc;
 
 // CLASS INITIALISATIONS CLASS INITIALISATIONS CLASS INITIALISATIONS CLASS INITIALISATIONS
-// const section = new Section(
-//   { items: initialCards, renderer: renderCard },
-//   ".elements__list"
-// );
 const cardDeleteConfirmButton = document.querySelector(".modal__delete-button");
 const popupImage = new PopupWithImage("#open-card-modal");
 popupImage.setEventListeners();
@@ -38,6 +34,10 @@ const editProfilePopup = new PopupWithForm("#edit-modal", handleProfileSubmit);
 const addNewCardPopup = new PopupWithForm(
   "#add-card-modal",
   handleNewCardSubmit
+);
+const editAvatarPopup = new PopupWithForm(
+  "#avatar-change-modal",
+  handleAvatarSubmit
 );
 const deleteCardPopup = new PopupWithDelete(
   "#delete-card-modal",
@@ -72,6 +72,9 @@ api.getInitialCards().then((cards) => {
 });
 
 // FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
+function renderLoading(buttonElementId = ".modal__save") {
+  document.querySelector(buttonElementId).textContent = "Saving...";
+}
 /**
  * Opens the image preview modal
  * @param {DOM Element} cardImage the DOM Element with the card's image
@@ -89,8 +92,15 @@ function handleImageClick(cardImage, cardName) {
 function handleProfileSubmit(data) {
   console.log("Profile Submit data: ", data);
   profileInfo.setUserInfo(data);
-  api.editProfile(data);
-  editProfilePopup.close();
+  api
+    .editProfile(data)
+    .then((res) => {
+      renderLoading();
+    })
+    .finally((res) => {
+      editProfilePopup.close();
+    });
+  // editProfilePopup.close();
 }
 
 function handleNewCardSubmit(data) {
@@ -105,11 +115,16 @@ function handleNewCardSubmit(data) {
   */
   console.log("ELEMENT ARGUMENT: ", data);
   // const cardObject = api.createCard(data);
-  api.createCard(data).then((result) => {
-    console.log("result._id", result._id);
-    renderCard(data, "prepend", result._id);
-  });
-  addNewCardPopup.close();
+  api
+    .createCard(data)
+    .then((result) => {
+      console.log("result._id", result._id);
+      renderCard(data, "prepend", result._id);
+    })
+    .then((res) => renderLoading())
+    .finally((res) => {
+      addNewCardPopup.close();
+    });
 }
 
 function handleCardDelete(cardId) {
@@ -119,12 +134,31 @@ function handleCardDelete(cardId) {
     // console.log(this);
     // console.log("Logging 'this' complete");
     this._cardElement.remove();
-    api.deleteCard(cardId);
-    deleteCardPopup.close();
+    api
+      .deleteCard(cardId)
+      .then((res) => {
+        renderLoading(".modal__delete-button");
+      })
+      .finally((res) => {
+        deleteCardPopup.close();
+      });
   });
 }
 
-function handleCardDeleteConfirm() {}
+function handleCardLike(cardId) {
+  this._cardLikeButton.classList.toggle("element__like-button_active");
+  const element = this._cardElement;
+  if (element.classList.contains("element__like-button_active")) {
+    api.likeCard(cardId);
+  } else {
+    api.dislikeCard(cardId);
+  }
+}
+
+function handleAvatarSubmit(data) {
+  api.avatarChange(data);
+  editAvatarPopup.close();
+}
 
 /**
  * Renders cards using the given params
@@ -137,7 +171,8 @@ function renderCard(inputs, method = "append", cardId) {
     "#add-elements",
     cardId,
     handleImageClick,
-    handleCardDelete
+    handleCardDelete,
+    handleCardLike
   );
   console.log("cardObject:renderCard(): ", cardId);
   section.addItem(cardClass.returnCardElement(), method);
@@ -158,13 +193,12 @@ addCardButton.addEventListener("click", () => {
   addNewCardPopup.open();
 });
 
-// cardDeleteConfirmButton.addEventListener("click", handleCardDelete);
+editAvatarButton.addEventListener("click", () => {
+  editAvatarPopup.open();
+});
 
 // Form 'submit' handlers
 editProfilePopup.setEventListeners();
 addNewCardPopup.setEventListeners();
 deleteCardPopup.setEventListeners();
-
-// Generate preset cards
-// section.renderItems();
-// section.renderItems(api.getInitialCards());
+editAvatarPopup.setEventListeners();

@@ -21,11 +21,20 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img
+          <div class="profile__avatar-wrapper">
+            <img
+              id="profile-image"
+              alt="An image of Jacques Costeau"
+              class="profile__avatar"
+            />
+            <div class="profile__edit"></div>
+          </div>
+          <!-- <img
             id="profile-image"
             alt="An image of Jacques Costeau"
             class="profile__avatar"
           />
+          <div class="profile__edit"></div> -->
           <div class="profile__profile-info">
             <!-- <h1 class="profile__profile-heading">Jacques Costeau</h1> -->
             <h1 class="profile__profile-heading"></h1>
@@ -165,6 +174,32 @@
         >
           Delete this card
         </button>
+      </div>
+    </div>
+    <!-- Avatar change modal -->
+    <div class="modal" id="avatar-change-modal" tabindex="-1">
+      <div class="modal__container">
+        <h2 class="modal__header">Change Profile Picture</h2>
+        <button type="button" class="modal__close"></button>
+        <form
+          name="avatar_change_form"
+          class="modal__form"
+          id="avatar-change-form"
+        >
+          <label class="modal__label">
+            <input
+              class="modal__input"
+              id="profile-avatar-link"
+              type="text"
+              name="avatarLink"
+              placeholder="Image Link"
+            />
+            <span class="modal__error" id="user-name-error"></span>
+          </label>
+          <button id="edit-profile-button" type="submit" class="modal__save">
+            Save
+          </button>
+        </form>
       </div>
     </div>
   </body>
