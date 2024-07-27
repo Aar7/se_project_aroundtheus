@@ -64,6 +64,7 @@ api.getUserInformation().then((data) => {
 
 let section;
 api.getInitialCards().then((cards) => {
+  console.log("cards from getInitialCards:", cards);
   section = new Section(
     { items: cards, renderer: renderCard },
     ".elements__list"
@@ -167,13 +168,15 @@ function handleAvatarSubmit(data) {
  */
 function renderCard(inputs, method = "append", cardId) {
   const cardClass = new Card(
-    { name: inputs["cardName"], link: inputs["link"] },
+    // { name: inputs["cardName"], link: inputs["link"] },
+    { name: inputs.name, link: inputs.link },
     "#add-elements",
     cardId,
     handleImageClick,
     handleCardDelete,
     handleCardLike
   );
+  // console.log("inputs from renderCard: ", inputs, inputs.cardName, inputs.link);
   console.log("cardObject:renderCard(): ", cardId);
   section.addItem(cardClass.returnCardElement(), method);
 }

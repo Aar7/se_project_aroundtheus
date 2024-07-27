@@ -24,7 +24,11 @@ export default class PopupWithForm extends Popup {
     const inputValues = {};
     inputElements.forEach((input) => {
       console.log(`input.name: ${input.name}`);
-      inputValues[input.name] = input.value;
+      if (input.name === "cardName") {
+        inputValues.name = input.value;
+      } else {
+        inputValues[input.name] = input.value;
+      }
     });
     console.log("GET INPUT VALUES: ", inputValues);
     return inputValues;

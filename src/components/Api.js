@@ -97,14 +97,14 @@ export default class Api {
    * @param {object} `{cardName, link}`
    * @returns `Promise`
    */
-  async createCard({ cardName, link }) {
+  async createCard({ name, link }) {
     return fetch(`${this._options.baseUrl}/cards`, {
       method: "POST",
       headers: {
         authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: cardName, link: link }),
+      body: JSON.stringify({ name: name, link: link }),
     })
       .then((res) => {
         console.log("Fetch response:", res); // Log response
