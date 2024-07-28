@@ -126,8 +126,12 @@
   cursor: pointer;
 }
 
-.modal__delete-button_align_margin {
-  margin-top: 38px;
+.modal__save_margin_value {
+  margin: 0;
+}
+
+.modal__header_margin_value {
+  margin-bottom: 38px;
 }
 
 .modal__save:hover:not(:disabled) {

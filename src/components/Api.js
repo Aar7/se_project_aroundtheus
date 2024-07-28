@@ -142,7 +142,7 @@ export default class Api {
   }
 
   async likeCard(cardId) {
-    console.log("likeCard() ran");
+    console.warn("likeCard() ran");
     const res = fetch(`${this._options.baseUrl}cards/${cardId}/likes`, {
       method: "PUT",
       headers: {
@@ -156,7 +156,7 @@ export default class Api {
   }
 
   async dislikeCard(cardId) {
-    console.log("dislikeCard() ran");
+    console.warn("dislikeCard() ran");
     const res = fetch(`${this._options.baseUrl}cards/${cardId}/likes`, {
       method: "DELETE",
       headers: {

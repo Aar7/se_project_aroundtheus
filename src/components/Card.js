@@ -7,6 +7,7 @@ export default class Card {
     { name, link },
     cardSelector,
     cardId,
+    cardLikeStatus,
     handleImageClick,
     handleDelete,
     handleCardLike
@@ -14,6 +15,7 @@ export default class Card {
     this._name = name;
     this._link = link;
     this._cardId = cardId;
+    this._cardLikeStatus = cardLikeStatus;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
     this._handleDelete = handleDelete;
@@ -34,7 +36,7 @@ export default class Card {
     this._cardDeleteModal = document.getElementById("delete-card-modal");
     // console.log("Card constructor - cardObject: ", cardObject);
     // console.log("------");
-    console.log("cardId from Card class: ", cardId);
+    // console.log("cardId from Card class: ", cardId);
   }
 
   _setEventListeners() {
@@ -57,6 +59,9 @@ export default class Card {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._cardName.textContent = this._name;
+    if (this._cardLikeStatus) {
+      this._cardLikeButton.classList.add("element__like-button_active");
+    }
     // console.log("Generated card: ", this);
 
     return this._cardElement;

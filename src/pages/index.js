@@ -128,7 +128,7 @@ function handleNewCardSubmit(data) {
     });
 }
 
-function handleCardDelete(cardId) {
+function handleCardDelete() {
   deleteCardPopup.open();
   deleteConfirmButton.addEventListener("click", () => {
     // console.log("Logging 'this'");
@@ -136,7 +136,7 @@ function handleCardDelete(cardId) {
     // console.log("Logging 'this' complete");
     this._cardElement.remove();
     api
-      .deleteCard(cardId)
+      .deleteCard(this._cardId)
       .then((res) => {
         renderLoading(".modal__delete-button");
       })
@@ -171,12 +171,12 @@ function renderCard(inputs, method = "append", cardId) {
   if (cardId == undefined) {
     cardId = inputs._id;
   }
-  console.log("inputs._id: ", inputs._id);
-  console.log("cardId: ", cardId);
+  // console.log("inputs.isLiked: ", inputs.isLiked);
   const cardClass = new Card(
     { name: inputs.name, link: inputs.link },
     "#add-elements",
     cardId,
+    inputs.isLiked,
     handleImageClick,
     handleCardDelete,
     handleCardLike
