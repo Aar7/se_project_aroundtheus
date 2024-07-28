@@ -41,7 +41,8 @@ const editAvatarPopup = new PopupWithForm(
 );
 const deleteCardPopup = new PopupWithDelete(
   "#delete-card-modal",
-  handleCardDelete
+  handleCardDelete,
+  handleCardDeleteListener
 );
 
 const profileInfo = new UserInfo(
@@ -98,8 +99,9 @@ function handleProfileSubmit(data) {
     .then((res) => {
       renderLoading();
     })
-    .finally((res) => {
+    .then((res) => {
       editProfilePopup.close();
+      this._popupElement.querySelector(".modal__save").textContent = "Save";
     });
   // editProfilePopup.close();
 }
@@ -125,25 +127,43 @@ function handleNewCardSubmit(data) {
     .then((res) => renderLoading())
     .finally((res) => {
       addNewCardPopup.close();
+
+      this._popupElement.querySelector(".modal__save").textContent = "Save";
     });
 }
-
+function handleCardDeleteListener() {
+  this._cardElement.remove();
+  api
+    .deleteCard(this._cardId)
+    .then((res) => {
+      renderLoading(".modal__delete-button");
+    })
+    .finally((res) => {
+      deleteCardPopup.close();
+      document.querySelector(".modal__delete-button").textContent = "Yes";
+    });
+}
 function handleCardDelete() {
-  deleteCardPopup.open();
-  deleteConfirmButton.addEventListener("click", () => {
-    // console.log("Logging 'this'");
-    // console.log(this);
-    // console.log("Logging 'this' complete");
-    this._cardElement.remove();
-    api
-      .deleteCard(this._cardId)
-      .then((res) => {
-        renderLoading(".modal__delete-button");
-      })
-      .finally((res) => {
-        deleteCardPopup.close();
-      });
-  });
+  const newObj = this;
+  deleteCardPopup.open(newObj);
+  deleteConfirmButton.addEventListener("click", handleCardDeleteListener);
+  // deleteConfirmButton.addEventListener("click", () => {
+  //   // console.log("Logging 'this'");
+  //   // console.log(this);
+  //   // console.log("Logging 'this' complete");
+  //   this._cardElement.remove();
+  //   api
+  //     .deleteCard(this._cardId)
+  //     .then((res) => {
+  //       renderLoading(".modal__delete-button");
+  //     })
+  //     .finally((res) => {
+  //       deleteCardPopup.close();
+  //       document.querySelector(".modal__delete-button").textContent = "Yes";
+
+  //       // this._popupElement.querySelector(".modal__save").textContent = "Save";
+  //     });
+  // });
 }
 
 function handleCardLike(cardId) {
