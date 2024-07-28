@@ -30,6 +30,7 @@ export default class Api {
    * @returns array of cards to be operated upon from the /cards endpoint
    */
   async getInitialCards() {
+    console.warn("getInitialCards() ran");
     return fetch(`${this._options.baseUrl}/cards`, this._options)
       .then((res) => {
         if (res.ok) {
@@ -49,6 +50,7 @@ export default class Api {
    * submission
    */
   async editProfile({ userName, aboutMe }) {
+    console.warn("editProfile() ran");
     const res = await fetch(`${this._options.baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
@@ -98,7 +100,8 @@ export default class Api {
    * @returns `Promise`
    */
   async createCard({ name, link }) {
-    return fetch(`${this._options.baseUrl}/cards`, {
+    console.warn("createCard() ran");
+    return fetch(`${this._options.baseUrl}cards`, {
       method: "POST",
       headers: {
         authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
@@ -125,6 +128,7 @@ export default class Api {
   }
 
   async deleteCard(cardId) {
+    console.warn("deleteCard() ran");
     const res = fetch(`${this._options.baseUrl}cards/${cardId}`, {
       method: "DELETE",
       headers: {
@@ -138,19 +142,21 @@ export default class Api {
   }
 
   async likeCard(cardId) {
+    console.log("likeCard() ran");
     const res = fetch(`${this._options.baseUrl}cards/${cardId}/likes`, {
       method: "PUT",
       headers: {
         authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
         "Content-Type": "application/json",
       },
-      body: {
+      body: JSON.stringify({
         _isLiked: true,
-      },
+      }),
     });
   }
 
   async dislikeCard(cardId) {
+    console.log("dislikeCard() ran");
     const res = fetch(`${this._options.baseUrl}cards/${cardId}/likes`, {
       method: "DELETE",
       headers: {
@@ -161,6 +167,7 @@ export default class Api {
   }
 
   async avatarChange(data) {
+    console.warn("avatarChange() ran");
     const res = fetch(`${this._options.baseUrl}users/me/avatar`, {
       method: "PATCH",
       headers: {

@@ -12,6 +12,7 @@ export default class Section {
    */
   renderItems() {
     this._items.forEach((item) => {
+      console.log("item from renderItems loop[Section]", item);
       this._renderer(item);
     });
   }

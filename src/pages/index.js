@@ -114,13 +114,13 @@ function handleNewCardSubmit(data) {
     of this new parameter, which is useful in deleting and
     referencing the card)
   */
-  console.log("ELEMENT ARGUMENT: ", data);
-  // const cardObject = api.createCard(data);
+  // console.log("ELEMENT ARGUMENT: ", data);
   api
     .createCard(data)
     .then((result) => {
-      console.log("result._id", result._id);
-      renderCard(data, "prepend", result._id);
+      const resultId = result._id;
+      console.log("result._id", resultId, typeof resultId);
+      renderCard(data, "prepend", resultId);
     })
     .then((res) => renderLoading())
     .finally((res) => {
@@ -148,7 +148,8 @@ function handleCardDelete(cardId) {
 
 function handleCardLike(cardId) {
   this._cardLikeButton.classList.toggle("element__like-button_active");
-  const element = this._cardElement;
+  const element = this._cardElement.querySelector(".element__like-button");
+  console.log("Card element clicked", this);
   if (element.classList.contains("element__like-button_active")) {
     api.likeCard(cardId);
   } else {
@@ -167,8 +168,12 @@ function handleAvatarSubmit(data) {
  * @param {string} method that takes either 'append' or 'prepend' depending on where the card should go in the DOM
  */
 function renderCard(inputs, method = "append", cardId) {
+  if (cardId == undefined) {
+    cardId = inputs._id;
+  }
+  console.log("inputs._id: ", inputs._id);
+  console.log("cardId: ", cardId);
   const cardClass = new Card(
-    // { name: inputs["cardName"], link: inputs["link"] },
     { name: inputs.name, link: inputs.link },
     "#add-elements",
     cardId,
@@ -177,7 +182,7 @@ function renderCard(inputs, method = "append", cardId) {
     handleCardLike
   );
   // console.log("inputs from renderCard: ", inputs, inputs.cardName, inputs.link);
-  console.log("cardObject:renderCard(): ", cardId);
+  // console.log("cardObject:renderCard(): ", cardId);
   section.addItem(cardClass.returnCardElement(), method);
 }
 

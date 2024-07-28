@@ -34,19 +34,14 @@ export default class Card {
     this._cardDeleteModal = document.getElementById("delete-card-modal");
     // console.log("Card constructor - cardObject: ", cardObject);
     // console.log("------");
-    // this._cardDeleteConfirmButton = document.querySelector(
-    //   ".modal__delete-button"
-    // );
+    console.log("cardId from Card class: ", cardId);
   }
 
   _setEventListeners() {
     this._cardLikeButton.addEventListener("click", () => {
-      this._handleLike();
+      this._handleLike(this._cardId);
     });
 
-    // this._cardDeleteButton.addEventListener("click", () => {
-    //   this._openDeleteConfirmation();
-    // });
     this._cardDeleteButton.addEventListener("click", () => {
       this._handleDelete();
     });
@@ -56,28 +51,13 @@ export default class Card {
     });
   }
 
-  // _openDeleteConfirmation() {
-  //   this._cardDeleteModal.classList.add("modal_opened");
-  // }
-
-  // _handleLike() {
-  //   this._cardLikeButton.classList.toggle("element__like-button_active");
-  // }
-
-  /**
-   *
-   */
-  // async _handleDelete() {
-  //   const res = await fetch;
-  //   this._cardElement.remove();
-  // }
-
   // returnCard: returns fully functional Card class with appropriate data populated in it
   returnCardElement() {
     this._setEventListeners();
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._cardName.textContent = this._name;
+    // console.log("Generated card: ", this);
 
     return this._cardElement;
   }
