@@ -169,7 +169,6 @@ function renderCard(inputs, method = "append", cardId) {
 }
 
 // EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS EVENT LISTENERS
-// Click 'edit' button
 editButton.addEventListener("click", () => {
   const { userName, userAbout } = profileInfo.getUserInfo();
   editModalNameInput.value = userName;
