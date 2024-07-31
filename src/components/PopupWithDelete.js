@@ -11,23 +11,21 @@ export default class PopupWithDelete extends Popup {
     );
   }
 
-  // setEventListeners() {
-  //   this._popupElement.addEventListener("submit", (event) => {
-  //     this._handleConfirm;
-  //     event.preventDefault();
-  //     event.target.reset();
-  //   });
+  setEventListeners() {
+    this._confirmButton.addEventListener("click", () => {
+      this._handleDeleteListener(this._cardObject);
+    });
 
-  //   super.setEventListeners();
-  // }
+    super.setEventListeners();
+  }
 
   open(cardObject) {
     this._cardObject = cardObject;
-    console.log("cardObject: ", cardObject);
+    // console.log("cardObject: ", cardObject);
     super.open();
   }
 
-  handleDeletion() {
-    cardObject;
-  }
+  // handleDeletion() {
+  //   cardObject;
+  // }
 }

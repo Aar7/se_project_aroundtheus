@@ -131,40 +131,59 @@ function handleNewCardSubmit(data) {
       this._popupElement.querySelector(".modal__save").textContent = "Save";
     });
 }
-function handleCardDeleteListener() {
-  this._cardElement.remove();
+function handleCardDeleteListener(card) {
+  // this._cardElement.remove();
   api
-    .deleteCard(this._cardId)
+    .deleteCard(card.getId())
     .then((res) => {
       renderLoading(".modal__delete-button");
     })
     .finally((res) => {
       deleteCardPopup.close();
+      card.removeCard();
       document.querySelector(".modal__delete-button").textContent = "Yes";
     });
 }
-function handleCardDelete() {
-  const newObj = this;
-  deleteCardPopup.open(newObj);
-  deleteConfirmButton.addEventListener("click", handleCardDeleteListener);
-  // deleteConfirmButton.addEventListener("click", () => {
-  //   // console.log("Logging 'this'");
-  //   // console.log(this);
-  //   // console.log("Logging 'this' complete");
-  //   this._cardElement.remove();
-  //   api
-  //     .deleteCard(this._cardId)
-  //     .then((res) => {
-  //       renderLoading(".modal__delete-button");
-  //     })
-  //     .finally((res) => {
-  //       deleteCardPopup.close();
-  //       document.querySelector(".modal__delete-button").textContent = "Yes";
 
-  //       // this._popupElement.querySelector(".modal__save").textContent = "Save";
-  //     });
-  // });
+function handleCardDelete(card) {
+  deleteCardPopup.open(card);
 }
+
+// function handleCardDeleteListener() {
+//   this._cardElement.remove();
+//   api
+//     .deleteCard(this._cardId)
+//     .then((res) => {
+//       renderLoading(".modal__delete-button");
+//     })
+//     .finally((res) => {
+//       deleteCardPopup.close();
+//       document.querySelector(".modal__delete-button").textContent = "Yes";
+//     });
+// }
+
+// function handleCardDelete() {
+//   const newObj = this;
+//   deleteCardPopup.open(newObj);
+//   deleteConfirmButton.addEventListener("click", handleCardDeleteListener);
+//   // deleteConfirmButton.addEventListener("click", () => {
+//   //   // console.log("Logging 'this'");
+//   //   // console.log(this);
+//   //   // console.log("Logging 'this' complete");
+//   //   this._cardElement.remove();
+//   //   api
+//   //     .deleteCard(this._cardId)
+//   //     .then((res) => {
+//   //       renderLoading(".modal__delete-button");
+//   //     })
+//   //     .finally((res) => {
+//   //       deleteCardPopup.close();
+//   //       document.querySelector(".modal__delete-button").textContent = "Yes";
+
+//   //       // this._popupElement.querySelector(".modal__save").textContent = "Save";
+//   //     });
+//   // });
+// }
 
 function handleCardLike(cardId) {
   this._cardLikeButton.classList.toggle("element__like-button_active");

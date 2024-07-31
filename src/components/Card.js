@@ -45,12 +45,21 @@ export default class Card {
     });
 
     this._cardDeleteButton.addEventListener("click", () => {
-      this._handleDelete();
+      this._handleDelete(this);
     });
 
     this._cardImage.addEventListener("click", () => {
       this._handleImageClick(this._cardImage, this._cardName);
     });
+  }
+
+  getId() {
+    return this._cardId;
+  }
+
+  removeCard() {
+    this._cardElement.remove();
+    this._cardElement = null;
   }
 
   // returnCard: returns fully functional Card class with appropriate data populated in it
