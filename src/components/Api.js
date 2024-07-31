@@ -29,8 +29,9 @@ export default class Api {
     const res = await fetch(`${this._baseUrl}users/me`, this._options);
     if (res.ok) {
       return res.json();
+    } else {
+      return Promise.reject(`Error <code>: ${res.status}`);
     }
-    return Promise.reject(`Error <code>: ${res.status}`);
   }
 
   /**
@@ -46,8 +47,9 @@ export default class Api {
         if (res.ok) {
           console.log("Initial cards", res);
           return res.json();
+        } else {
+          return Promise.reject(`Error <code>: ${res.status}`);
         }
-        return Promise.reject(`Error <code>: ${res.status}`);
       })
       .catch((error) => {
         console.log(error);
@@ -71,8 +73,9 @@ export default class Api {
     });
     if (res.ok) {
       return res.json();
+    } else {
+      return Promise.reject(`Error <code>: ${res.status}`);
     }
-    throw new Error(`Error code: ${res.status}`);
   }
 
   /**
@@ -93,8 +96,6 @@ export default class Api {
         console.log("Fetch response:", res); // Log response
         if (res.ok) {
           return res.json();
-        } else {
-          return Promise.reject(new Error(`Error code: ${res.status}`));
         }
       })
       .then((data) => {
@@ -115,6 +116,8 @@ export default class Api {
     });
     if (res.ok) {
       return res.json();
+    } else {
+      return Promise.reject(`Error <code>: ${res.status}`);
     }
   }
 
@@ -126,6 +129,12 @@ export default class Api {
       body: JSON.stringify({
         _isLiked: true,
       }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return Promise.reject(`Error <code>: ${res.status}`);
+      }
     });
   }
 
@@ -134,6 +143,12 @@ export default class Api {
     const res = fetch(`${this._baseUrl}cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        return Promise.reject(`Error <code>: ${res.status}`);
+      }
     });
   }
 
@@ -148,6 +163,8 @@ export default class Api {
     }).then((res) => {
       if (res.ok) {
         return res.json();
+      } else {
+        return Promise.reject(`Error <code>: ${res.status}`);
       }
     });
   }

@@ -104,6 +104,7 @@ function handleNewCardSubmit(data) {
   api
     .createCard(data)
     .then((result) => {
+      console.log(result);
       const resultId = result._id;
       renderCard(data, "prepend", resultId);
     })
