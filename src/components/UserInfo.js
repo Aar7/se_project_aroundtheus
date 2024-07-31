@@ -23,7 +23,6 @@ export default class UserInfo {
       userName: this._nameElement.textContent,
       userAbout: this._aboutMeElement.textContent,
     };
-    // console.log(this._aboutMeElement.textContent);
     return userInfo;
   }
 

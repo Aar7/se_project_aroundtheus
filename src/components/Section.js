@@ -12,15 +12,9 @@ export default class Section {
    */
   renderItems() {
     this._items.forEach((item) => {
-      // console.log("item from renderItems loop[Section]", item);
       this._renderer(item);
     });
   }
-  // renderItems(cards) {
-  //   cards.forEach((card) => {
-  //     this._renderer(card);
-  //   });
-  // }
 
   /**
    * Same as callback in 'addCardForm' event listener

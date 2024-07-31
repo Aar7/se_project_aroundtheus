@@ -1,8 +1,4 @@
-// Replaces functionality of getCardElement
 export default class Card {
-  // data: OBJECT with card text and link to image
-  // cardSelector: selector STRING for the corresponding TEMPLATE element
-  // handleImageClick: FUNCTION handling the opening of the preview picture modal
   constructor(
     { name, link },
     cardSelector,
@@ -34,9 +30,6 @@ export default class Card {
       ".element__delete-card-button"
     );
     this._cardDeleteModal = document.getElementById("delete-card-modal");
-    // console.log("Card constructor - cardObject: ", cardObject);
-    // console.log("------");
-    // console.log("cardId from Card class: ", cardId);
   }
 
   _setEventListeners() {
@@ -62,7 +55,6 @@ export default class Card {
     this._cardElement = null;
   }
 
-  // returnCard: returns fully functional Card class with appropriate data populated in it
   returnCardElement() {
     this._setEventListeners();
     this._cardImage.src = this._link;
@@ -71,7 +63,6 @@ export default class Card {
     if (this._cardLikeStatus) {
       this._cardLikeButton.classList.add("element__like-button_active");
     }
-    // console.log("Generated card: ", this);
 
     return this._cardElement;
   }

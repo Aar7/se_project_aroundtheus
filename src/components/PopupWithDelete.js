@@ -21,11 +21,6 @@ export default class PopupWithDelete extends Popup {
 
   open(cardObject) {
     this._cardObject = cardObject;
-    // console.log("cardObject: ", cardObject);
     super.open();
   }
-
-  // handleDeletion() {
-  //   cardObject;
-  // }
 }

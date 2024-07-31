@@ -20,7 +20,6 @@ export default class PopupWithForm extends Popup {
     const inputElements = Array.from(
       this._popupElement.querySelectorAll(".modal__input")
     );
-    // console.log("_getInputElements: ", inputElements);
     const inputValues = {};
     inputElements.forEach((input) => {
       if (input.name === "cardName") {

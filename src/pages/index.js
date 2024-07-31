@@ -1,6 +1,5 @@
 import "./index.css";
 import headerImgSrc from "../images/header-image.svg";
-// import profileImgSrc from "../images/jacques-cousteau.jpg";
 import Card from "../components/Card.js";
 import { formValidators } from "../scripts/validation.js";
 import Section from "../components/Section.js";
@@ -9,7 +8,6 @@ import {
   editModalAboutmeInput,
   editButton,
   addCardButton,
-  deleteConfirmButton,
   editAvatarButton,
   sectionProfileInfoHeading,
   sectionProfileInfoSubtitle,
@@ -22,12 +20,9 @@ import PopupWithDelete from "../components/PopupWithDelete.js";
 
 const headerImg = document.getElementById("header-image");
 headerImg.src = headerImgSrc;
-// const profileImg = document.getElementById("profile-image");
-// profileImg.src = profileImgSrc;
 const profileImg = document.getElementById("profile-image");
 
 // CLASS INITIALISATIONS CLASS INITIALISATIONS CLASS INITIALISATIONS CLASS INITIALISATIONS
-const cardDeleteConfirmButton = document.querySelector(".modal__delete-button");
 const popupImage = new PopupWithImage("#open-card-modal");
 popupImage.setEventListeners();
 
@@ -60,7 +55,6 @@ const api = new Api({
 });
 
 api.getUserInformation().then((data) => {
-  console.log(data);
   sectionProfileInfoHeading.textContent = data.name;
   sectionProfileInfoSubtitle.textContent = data.about;
   profileImg.src = data.avatar;
@@ -68,7 +62,6 @@ api.getUserInformation().then((data) => {
 
 let section;
 api.getInitialCards().then((cards) => {
-  console.log("cards from getInitialCards:", cards);
   section = new Section(
     { items: cards, renderer: renderCard },
     ".elements__list"
@@ -95,7 +88,6 @@ function handleImageClick(cardImage, cardName) {
  * @param {Array} data
  */
 function handleProfileSubmit(data) {
-  console.log("Profile Submit data: ", data);
   profileInfo.setUserInfo(data);
   api
     .editProfile(data)
@@ -106,25 +98,13 @@ function handleProfileSubmit(data) {
       editProfilePopup.close();
       this._popupElement.querySelector(".modal__save").textContent = "Save";
     });
-  // editProfilePopup.close();
 }
 
 function handleNewCardSubmit(data) {
-  /*
-    Assign api.createCard(data) to a variable which
-    will store the returned object from the server
-    after the card is created.
-    Then, pass the _id field to the renderCard function call.
-    (Need to redefine the function to enable handling
-    of this new parameter, which is useful in deleting and
-    referencing the card)
-  */
-  // console.log("ELEMENT ARGUMENT: ", data);
   api
     .createCard(data)
     .then((result) => {
       const resultId = result._id;
-      console.log("result._id", resultId, typeof resultId);
       renderCard(data, "prepend", resultId);
     })
     .then((res) => renderLoading())
@@ -135,7 +115,6 @@ function handleNewCardSubmit(data) {
     });
 }
 function handleCardDeleteListener(card) {
-  // this._cardElement.remove();
   api
     .deleteCard(card.getId())
     .then((res) => {
@@ -152,46 +131,9 @@ function handleCardDelete(card) {
   deleteCardPopup.open(card);
 }
 
-// function handleCardDeleteListener() {
-//   this._cardElement.remove();
-//   api
-//     .deleteCard(this._cardId)
-//     .then((res) => {
-//       renderLoading(".modal__delete-button");
-//     })
-//     .finally((res) => {
-//       deleteCardPopup.close();
-//       document.querySelector(".modal__delete-button").textContent = "Yes";
-//     });
-// }
-
-// function handleCardDelete() {
-//   const newObj = this;
-//   deleteCardPopup.open(newObj);
-//   deleteConfirmButton.addEventListener("click", handleCardDeleteListener);
-//   // deleteConfirmButton.addEventListener("click", () => {
-//   //   // console.log("Logging 'this'");
-//   //   // console.log(this);
-//   //   // console.log("Logging 'this' complete");
-//   //   this._cardElement.remove();
-//   //   api
-//   //     .deleteCard(this._cardId)
-//   //     .then((res) => {
-//   //       renderLoading(".modal__delete-button");
-//   //     })
-//   //     .finally((res) => {
-//   //       deleteCardPopup.close();
-//   //       document.querySelector(".modal__delete-button").textContent = "Yes";
-
-//   //       // this._popupElement.querySelector(".modal__save").textContent = "Save";
-//   //     });
-//   // });
-// }
-
 function handleCardLike(cardId) {
   this._cardLikeButton.classList.toggle("element__like-button_active");
   const element = this._cardElement.querySelector(".element__like-button");
-  console.log("Card element clicked", this);
   if (element.classList.contains("element__like-button_active")) {
     api.likeCard(cardId);
   } else {
@@ -214,7 +156,6 @@ function renderCard(inputs, method = "append", cardId) {
   if (cardId == undefined) {
     cardId = inputs._id;
   }
-  // console.log("inputs.isLiked: ", inputs.isLiked);
   const cardClass = new Card(
     { name: inputs.name, link: inputs.link },
     "#add-elements",
@@ -224,8 +165,6 @@ function renderCard(inputs, method = "append", cardId) {
     handleCardDelete,
     handleCardLike
   );
-  // console.log("inputs from renderCard: ", inputs, inputs.cardName, inputs.link);
-  // console.log("cardObject:renderCard(): ", cardId);
   section.addItem(cardClass.returnCardElement(), method);
 }
 
