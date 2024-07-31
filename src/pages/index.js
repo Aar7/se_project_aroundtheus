@@ -1,6 +1,6 @@
 import "./index.css";
 import headerImgSrc from "../images/header-image.svg";
-import profileImgSrc from "../images/jacques-cousteau.jpg";
+// import profileImgSrc from "../images/jacques-cousteau.jpg";
 import Card from "../components/Card.js";
 import { formValidators } from "../scripts/validation.js";
 import Section from "../components/Section.js";
@@ -22,8 +22,9 @@ import PopupWithDelete from "../components/PopupWithDelete.js";
 
 const headerImg = document.getElementById("header-image");
 headerImg.src = headerImgSrc;
+// const profileImg = document.getElementById("profile-image");
+// profileImg.src = profileImgSrc;
 const profileImg = document.getElementById("profile-image");
-profileImg.src = profileImgSrc;
 
 // CLASS INITIALISATIONS CLASS INITIALISATIONS CLASS INITIALISATIONS CLASS INITIALISATIONS
 const cardDeleteConfirmButton = document.querySelector(".modal__delete-button");
@@ -59,8 +60,10 @@ const api = new Api({
 });
 
 api.getUserInformation().then((data) => {
+  console.log(data);
   sectionProfileInfoHeading.textContent = data.name;
   sectionProfileInfoSubtitle.textContent = data.about;
+  profileImg.src = data.avatar;
 });
 
 let section;
@@ -199,6 +202,7 @@ function handleCardLike(cardId) {
 function handleAvatarSubmit(data) {
   api.avatarChange(data);
   editAvatarPopup.close();
+  profileImg.src = data.avatarLink;
 }
 
 /**

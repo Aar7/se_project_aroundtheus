@@ -18,6 +18,7 @@ export default class Api {
   async getUserInformation() {
     const res = await fetch(`${this._options.baseUrl}/users/me`, this._options);
     if (res.ok) {
+      console.log(res);
       return res.json();
     }
     return Promise.reject(`Error <code>: ${res.status}`);
@@ -67,30 +68,6 @@ export default class Api {
     }
     throw new Error(`Error code: ${res.status}`);
   }
-
-  // async createCard({ cardName, link }) {
-  //   const res = await fetch(`${this._options.baseUrl}/cards`, {
-  //     method: "POST",
-  //     headers: {
-  //       authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       name: cardName,
-  //       link: link,
-  //     }),
-  //   })
-  //     .then((res) => {
-  //       if (res.ok) {
-  //         return res.json();
-  //       } else {
-  //         throw new Error(`Error code: ${res.status}`);
-  //       }
-  //     })
-  //     .then((data) => {
-  //       return data;
-  //     });
-  // }
 
   /**
    * Sends a POST request to the server with the card
@@ -174,16 +151,13 @@ export default class Api {
         authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
         "Content-Type": "application/json",
       },
-      body: {
+      body: JSON.stringify({
         avatar: data.avatarLink,
-      },
+      }),
     }).then((res) => {
       if (res.ok) {
         return res.json();
       }
     });
   }
-  // renderCards() {
-  //   return Promise.all(/*cards to render, array of fn calls for getting user information*/);
-  // }
 }
