@@ -8,6 +8,16 @@
 export default class Api {
   constructor(options) {
     this._options = options;
+    this._baseUrl = options.baseUrl;
+    this._headers = options.headers;
+  }
+
+  async _checkResponse(res) {
+    console.log("res from checkresponse(): ", res);
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error. Status:${res.status}`);
   }
 
   /**
@@ -16,9 +26,8 @@ export default class Api {
    * @returns object containing user 'name' and 'about'
    */
   async getUserInformation() {
-    const res = await fetch(`${this._options.baseUrl}/users/me`, this._options);
+    const res = await fetch(`${this._baseUrl}users/me`, this._options);
     if (res.ok) {
-      console.log(res);
       return res.json();
     }
     return Promise.reject(`Error <code>: ${res.status}`);
@@ -32,7 +41,7 @@ export default class Api {
    */
   async getInitialCards() {
     console.warn("getInitialCards() ran");
-    return fetch(`${this._options.baseUrl}/cards`, this._options)
+    return fetch(`${this._baseUrl}/cards`, { headers: this._headers })
       .then((res) => {
         if (res.ok) {
           console.log("Initial cards", res);
@@ -52,12 +61,9 @@ export default class Api {
    */
   async editProfile({ userName, aboutMe }) {
     console.warn("editProfile() ran");
-    const res = await fetch(`${this._options.baseUrl}/users/me`, {
+    const res = await fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: {
-        authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: userName,
         about: aboutMe,
@@ -78,12 +84,9 @@ export default class Api {
    */
   async createCard({ name, link }) {
     console.warn("createCard() ran");
-    return fetch(`${this._options.baseUrl}cards`, {
+    return fetch(`${this._baseUrl}cards`, {
       method: "POST",
-      headers: {
-        authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({ name: name, link: link }),
     })
       .then((res) => {
@@ -106,12 +109,9 @@ export default class Api {
 
   async deleteCard(cardId) {
     console.warn("deleteCard() ran");
-    const res = fetch(`${this._options.baseUrl}cards/${cardId}`, {
+    const res = fetch(`${this._baseUrl}cards/${cardId}`, {
       method: "DELETE",
-      headers: {
-        authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
     });
     if (res.ok) {
       return res.json();
@@ -120,12 +120,9 @@ export default class Api {
 
   async likeCard(cardId) {
     console.warn("likeCard() ran");
-    const res = fetch(`${this._options.baseUrl}cards/${cardId}/likes`, {
+    const res = fetch(`${this._baseUrl}cards/${cardId}/likes`, {
       method: "PUT",
-      headers: {
-        authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
         _isLiked: true,
       }),
@@ -134,23 +131,17 @@ export default class Api {
 
   async dislikeCard(cardId) {
     console.warn("dislikeCard() ran");
-    const res = fetch(`${this._options.baseUrl}cards/${cardId}/likes`, {
+    const res = fetch(`${this._baseUrl}cards/${cardId}/likes`, {
       method: "DELETE",
-      headers: {
-        authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
     });
   }
 
   async avatarChange(data) {
     console.warn("avatarChange() ran");
-    const res = fetch(`${this._options.baseUrl}users/me/avatar`, {
+    const res = fetch(`${this._baseUrl}users/me/avatar`, {
       method: "PATCH",
-      headers: {
-        authorization: "37d10eee-d0ba-4e04-840e-0ebf682b3c60",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
         avatar: data.avatarLink,
       }),
