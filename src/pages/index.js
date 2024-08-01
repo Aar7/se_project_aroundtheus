@@ -99,7 +99,6 @@ function handleProfileSubmit(data, formElement) {
       editProfilePopup.close();
     })
     .finally((res) => {
-      // editProfilePopup.resetButtonText("Save");
       editProfilePopup.renderLoading(false);
     });
 }

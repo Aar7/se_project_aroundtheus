@@ -8,10 +8,6 @@ export default class Popup {
     this._handleEscClose = this._handleEscClose.bind(this);
   }
 
-  resetButtonText(buttonText) {
-    this._popupElement.querySelector(".modal__save").textContent = buttonText;
-  }
-
   /**
    * Opens the modal and adds the event listener for
    * the `Esc` key
