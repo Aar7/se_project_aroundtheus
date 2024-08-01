@@ -183,10 +183,16 @@
               type="url"
               name="avatarLink"
               placeholder="Image Link"
+              required
             />
             <span class="modal__error" id="profile-avatar-link-error"></span>
           </label>
-          <button id="edit-avatar-button" type="submit" class="modal__save">
+          <button
+            id="edit-avatar-button"
+            type="submit"
+            class="modal__save modal__button_disabled"
+            disabled
+          >
             Save
           </button>
         </form>

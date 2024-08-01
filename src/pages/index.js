@@ -54,6 +54,8 @@ const api = new Api({
   },
 });
 
+console.log(formValidators);
+
 api.getUserInformation().then((data) => {
   const userName = data.name;
   const aboutMe = data.about;
@@ -193,6 +195,7 @@ addCardButton.addEventListener("click", () => {
 });
 
 editAvatarButton.addEventListener("click", () => {
+  formValidators.avatar_change_form.toggleSubmitButtonState();
   editAvatarPopup.open();
 });
 
