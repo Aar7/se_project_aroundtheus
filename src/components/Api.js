@@ -13,11 +13,15 @@ export default class Api {
   }
 
   async _checkResponse(res) {
-    // console.log("res from checkresponse(): ", res);
     if (res.ok) {
       return res.json();
+    } else {
+      return Promise.reject(`Error. Status: ${res.status}`);
     }
-    return Promise.reject(`Error. Status:${res.status}`);
+  }
+
+  logError(error) {
+    console.error(error);
   }
 
   /**
@@ -26,11 +30,9 @@ export default class Api {
    * @returns object containing user 'name' and 'about'
    */
   async getUserInformation() {
-    return fetch(`${this._baseUrl}users/me`, this._options)
-      .then(this._checkResponse)
-      .catch((error) => {
-        console.error(error);
-      });
+    return fetch(`${this._baseUrl}users/me`, this._options).then(
+      this._checkResponse
+    );
   }
 
   /**
@@ -41,11 +43,9 @@ export default class Api {
    */
   async getInitialCards() {
     console.warn("getInitialCards() ran");
-    return fetch(`${this._baseUrl}/cards`, { headers: this._headers })
-      .then(this._checkResponse)
-      .catch((error) => {
-        console.error(error);
-      });
+    return fetch(`${this._baseUrl}cards`, { headers: this._headers }).then(
+      this._checkResponse
+    );
   }
 
   /**
@@ -55,18 +55,14 @@ export default class Api {
    */
   async editProfile({ userName, aboutMe }) {
     console.warn("editProfile() ran");
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         name: userName,
         about: aboutMe,
       }),
-    })
-      .then(this._checkResponse)
-      .catch((error) => {
-        console.error(error);
-      });
+    }).then(this._checkResponse);
   }
 
   /**
@@ -87,10 +83,6 @@ export default class Api {
       .then((data) => {
         console.log("Fetch data:", data); // Log data
         return data;
-      })
-      .catch((err) => {
-        console.error("Fetch error:", err);
-        throw err;
       });
   }
 
@@ -99,11 +91,7 @@ export default class Api {
     return fetch(`${this._baseUrl}cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    })
-      .then(this._checkResponse)
-      .catch((error) => {
-        console.error(error);
-      });
+    }).then(this._checkResponse);
   }
 
   async likeCard(cardId) {
@@ -114,11 +102,7 @@ export default class Api {
       body: JSON.stringify({
         _isLiked: true,
       }),
-    })
-      .then(this._checkResponse)
-      .catch((error) => {
-        console.error(error);
-      });
+    }).then(this._checkResponse);
   }
 
   async dislikeCard(cardId) {
@@ -126,9 +110,7 @@ export default class Api {
     return fetch(`${this._baseUrl}cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    })
-      .then(this._checkResponse)
-      .catch((error) => console.error(error));
+    }).then(this._checkResponse);
   }
 
   async avatarChange(data) {
@@ -139,10 +121,6 @@ export default class Api {
       body: JSON.stringify({
         avatar: data.avatarLink,
       }),
-    })
-      .then(this._checkResponse)
-      .catch((error) => {
-        console.error(error);
-      });
+    }).then(this._checkResponse);
   }
 }

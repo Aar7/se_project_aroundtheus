@@ -56,21 +56,27 @@ const api = new Api({
 
 console.log(formValidators);
 
-api.getUserInformation().then((data) => {
-  const userName = data.name;
-  const aboutMe = data.about;
-  profileInfo.setUserInfo({ userName, aboutMe });
-  profileInfo.setAvatar(data.avatar);
-});
+api
+  .getUserInformation()
+  .then((data) => {
+    const userName = data.name;
+    const aboutMe = data.about;
+    profileInfo.setUserInfo({ userName, aboutMe });
+    profileInfo.setAvatar(data.avatar);
+  })
+  .catch(api.logError);
 
 let section;
-api.getInitialCards().then((cards) => {
-  section = new Section(
-    { items: cards, renderer: renderCard },
-    ".elements__list"
-  );
-  section.renderItems();
-});
+api
+  .getInitialCards()
+  .then((cards) => {
+    section = new Section(
+      { items: cards, renderer: renderCard },
+      ".elements__list"
+    );
+    section.renderItems();
+  })
+  .catch(api.logError);
 
 // FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
 /**
@@ -99,6 +105,7 @@ function handleProfileSubmit(data, formElement) {
     .then((res) => {
       editProfilePopup.close();
     })
+    .catch(api.logError)
     .finally((res) => {
       editProfilePopup.renderLoading(false);
     });
@@ -117,6 +124,7 @@ function handleNewCardSubmit(data, formElement) {
       addNewCardPopup.close();
       formElement.reset();
     })
+    .catch(api.logError)
     .finally((res) => {
       addNewCardPopup.renderLoading(false);
     });
@@ -129,6 +137,7 @@ function handleCardDeleteListener(card) {
       deleteCardPopup.close();
       card.removeCard();
     })
+    .catch(api.logError)
     .finally((res) => {
       deleteCardPopup.renderLoading(false);
     });
@@ -139,24 +148,32 @@ function handleCardDelete(card) {
 }
 
 function handleCardLike(cardId) {
-  // const element = this._cardElement.querySelector(".element__like-button");
   if (this.checkIfLikeActive()) {
-    api.likeCard(cardId).then((res) => {
-      this.toggleCardLikeButton();
-    });
+    api
+      .likeCard(cardId)
+      .then((res) => {
+        this.toggleCardLikeButton();
+      })
+      .catch(api.logError);
   } else {
-    api.dislikeCard(cardId).then((res) => this.toggleCardLikeButton());
+    api
+      .dislikeCard(cardId)
+      .then((res) => this.toggleCardLikeButton())
+      .catch(api.logError);
   }
 }
 
 function handleAvatarSubmit(data, formElement) {
   editAvatarPopup.renderLoading(true);
-  api.avatarChange(data).then((res) => {
-    formElement.reset();
-    editAvatarPopup.close();
-    profileInfo.setAvatar(data.avatarLink);
-    editAvatarPopup.renderLoading(false);
-  });
+  api
+    .avatarChange(data)
+    .then((res) => {
+      formElement.reset();
+      editAvatarPopup.close();
+      profileInfo.setAvatar(data.avatarLink);
+      editAvatarPopup.renderLoading(false);
+    })
+    .catch(api.logError);
 }
 
 /**
