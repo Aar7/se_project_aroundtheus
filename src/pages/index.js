@@ -155,18 +155,19 @@ function handleCardDelete(card) {
   deleteCardPopup.open(card);
 }
 
-function handleCardLike(cardId) {
-  if (this.checkIfLikeActive()) {
+function handleCardLike(card) {
+  console.log(card);
+  if (card.checkIfLikeActive()) {
     api
-      .likeCard(cardId)
+      .likeCard(card.cardId)
       .then((res) => {
-        this.toggleCardLikeButton();
+        card.toggleCardLikeButton();
       })
       .catch(api.logError);
   } else {
     api
-      .dislikeCard(cardId)
-      .then((res) => this.toggleCardLikeButton())
+      .dislikeCard(card.cardId)
+      .then((res) => card.toggleCardLikeButton())
       .catch(api.logError);
   }
 }
