@@ -87,11 +87,12 @@ function handleImageClick(cardImage, cardName) {
  * and sends the data through the API class to the server
  * @param {Array} data
  */
-function handleProfileSubmit(data) {
+function handleProfileSubmit(data, formElement) {
   profileInfo.setUserInfo(data);
   api
     .editProfile(data)
     .then((res) => {
+      formElement.reset();
       renderLoading();
     })
     .then((res) => {
@@ -100,7 +101,7 @@ function handleProfileSubmit(data) {
     });
 }
 
-function handleNewCardSubmit(data) {
+function handleNewCardSubmit(data, formElement) {
   api
     .createCard(data)
     .then((result) => {
@@ -108,10 +109,12 @@ function handleNewCardSubmit(data) {
       const resultId = result._id;
       renderCard(data, "prepend", resultId);
     })
+    .then((res) => {
+      addNewCardPopup.close();
+      formElement.reset();
+    })
     .then((res) => renderLoading())
     .finally((res) => {
-      addNewCardPopup.close();
-
       this._popupElement.querySelector(".modal__save").textContent = "Save";
     });
 }
@@ -142,8 +145,10 @@ function handleCardLike(cardId) {
   }
 }
 
-function handleAvatarSubmit(data) {
-  api.avatarChange(data);
+function handleAvatarSubmit(data, formElement) {
+  api.avatarChange(data).then((res) => {
+    formElement.reset();
+  });
   editAvatarPopup.close();
   profileImg.src = data.avatarLink;
 }

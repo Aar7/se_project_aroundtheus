@@ -1,4 +1,3 @@
-import { modalImage, modalImageTitle } from "../utils/constants.js";
 import Popup from "./Popup.js";
 
 /**
@@ -10,6 +9,11 @@ import Popup from "./Popup.js";
 export default class PopupWithImage extends Popup {
   constructor(popupSelector) {
     super(popupSelector);
+    this._openCardModal = document.querySelector("#open-card-modal");
+    this._modalImage = this._openCardModal.querySelector(".modal__image");
+    this._modalImageTitle = this._openCardModal.querySelector(
+      ".modal__image-title"
+    );
   }
 
   /**
@@ -20,9 +24,9 @@ export default class PopupWithImage extends Popup {
    * @param {*} link Link of the image on the card
    */
   open(name, link) {
-    modalImage.src = link;
-    modalImage.alt = name;
-    modalImageTitle.textContent = name;
+    this._modalImage.src = link;
+    this._modalImage.alt = name;
+    this._modalImageTitle.textContent = name;
     super.open();
   }
 }
