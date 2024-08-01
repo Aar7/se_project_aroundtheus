@@ -91,12 +91,12 @@ function handleImageClick(cardImage, cardName) {
  */
 function handleProfileSubmit(data, formElement) {
   console.log(data);
+  renderLoading();
   api
     .editProfile(data)
     .then((res) => {
       profileInfo.setUserInfo(data);
       formElement.reset();
-      renderLoading();
     })
     .then((res) => {
       editProfilePopup.close();
@@ -107,6 +107,7 @@ function handleProfileSubmit(data, formElement) {
 }
 
 function handleNewCardSubmit(data, formElement) {
+  renderLoading();
   api
     .createCard(data)
     .then((result) => {
@@ -118,22 +119,17 @@ function handleNewCardSubmit(data, formElement) {
       addNewCardPopup.close();
       formElement.reset();
     })
-    .then((res) => renderLoading())
     .finally((res) => {
       addNewCardPopup.resetButtonText("Create");
     });
 }
 function handleCardDeleteListener(card) {
-  api
-    .deleteCard(card.getId())
-    .then((res) => {
-      renderLoading(".modal__delete-button");
-    })
-    .finally((res) => {
-      deleteCardPopup.close();
-      card.removeCard();
-      document.querySelector(".modal__delete-button").textContent = "Yes";
-    });
+  renderLoading(".modal__delete-button");
+  api.deleteCard(card.getId()).finally((res) => {
+    deleteCardPopup.close();
+    card.removeCard();
+    document.querySelector(".modal__delete-button").textContent = "Yes";
+  });
 }
 
 function handleCardDelete(card) {
