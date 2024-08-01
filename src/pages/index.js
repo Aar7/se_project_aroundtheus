@@ -148,10 +148,12 @@ function handleCardLike(cardId) {
 }
 
 function handleAvatarSubmit(data, formElement) {
+  editAvatarPopup.renderLoading(true);
   api.avatarChange(data).then((res) => {
     formElement.reset();
     editAvatarPopup.close();
     profileInfo.setAvatar(data.avatarLink);
+    editAvatarPopup.renderLoading(false);
   });
 }
 
