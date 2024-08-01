@@ -74,6 +74,8 @@ export default class Api {
    */
   async createCard({ name, link }) {
     console.warn("createCard() ran");
+    console.log("name", name);
+    console.log("link", link);
     return fetch(`${this._baseUrl}cards`, {
       method: "POST",
       headers: this._headers,

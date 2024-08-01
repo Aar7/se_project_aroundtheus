@@ -1,7 +1,12 @@
 import "./index.css";
 import headerImgSrc from "../images/header-image.svg";
 import Card from "../components/Card.js";
-import { formValidators } from "../scripts/validation.js";
+import {
+  // formValidators,
+  addCardValidator,
+  editProfileValidator,
+  editAvatarValidator,
+} from "../scripts/validation.js";
 import Section from "../components/Section.js";
 import {
   editModalNameInput,
@@ -54,7 +59,7 @@ const api = new Api({
   },
 });
 
-console.log(formValidators);
+// console.log(formValidators);
 
 api
   .getUserInformation()
@@ -113,8 +118,11 @@ function handleProfileSubmit(data, formElement) {
 
 function handleNewCardSubmit(data, formElement) {
   addNewCardPopup.renderLoading(true);
+  console.log(data);
+  const cardObject = { name: data.title, link: data.link };
   api
-    .createCard(data)
+    // .createCard(data)
+    .createCard(cardObject)
     .then((result) => {
       console.log(result);
       const resultId = result._id;
@@ -178,18 +186,19 @@ function handleAvatarSubmit(data, formElement) {
 
 /**
  * Renders cards using the given params
- * @param {object} inputs object with 'name' and 'link' properties
+ * @param {object} input object with 'name' and 'link' properties
  * @param {string} method that takes either 'append' or 'prepend' depending on where the card should go in the DOM
  */
-function renderCard(inputs, method = "append", cardId) {
+function renderCard(input, method = "append", cardId) {
   if (cardId == undefined) {
-    cardId = inputs._id;
+    cardId = input._id;
   }
+  console.log("inputssssss: ", input);
   const cardClass = new Card(
-    { name: inputs.name, link: inputs.link },
+    { name: input.name || input.title, link: input.link },
     "#add-elements",
     cardId,
-    inputs.isLiked,
+    input.isLiked,
     handleImageClick,
     handleCardDelete,
     handleCardLike
@@ -203,16 +212,16 @@ editButton.addEventListener("click", () => {
   editModalNameInput.value = userName;
   editModalAboutmeInput.value = userAbout;
   editProfilePopup.open();
-  formValidators.edit_profile_form.resetValidation();
+  editProfileValidator.resetValidation();
 });
 
 addCardButton.addEventListener("click", () => {
-  formValidators.add_card_form.toggleSubmitButtonState();
+  addCardValidator.toggleSubmitButtonState();
   addNewCardPopup.open();
 });
 
 editAvatarButton.addEventListener("click", () => {
-  formValidators.avatar_change_form.toggleSubmitButtonState();
+  editAvatarValidator.toggleSubmitButtonState();
   editAvatarPopup.open();
 });
 
