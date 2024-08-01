@@ -122,7 +122,7 @@ function handleNewCardSubmit(data, formElement) {
     });
 }
 function handleCardDeleteListener(card) {
-  deleteCardPopup.renderLoading(true);
+  deleteCardPopup.renderLoading(true, "Deleting...");
   api
     .deleteCard(card.getId())
     .then((res) => {
