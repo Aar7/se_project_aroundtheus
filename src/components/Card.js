@@ -55,6 +55,20 @@ export default class Card {
     this._cardElement = null;
   }
 
+  toggleCardLikeButton() {
+    this._cardLikeButton.classList.toggle("element__like-button_active");
+  }
+
+  checkIfLikeActive() {
+    if (
+      this._cardLikeButton.classList.contains("element__like-button_active")
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   returnCardElement() {
     this._setEventListeners();
     this._cardImage.src = this._link;

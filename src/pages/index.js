@@ -141,12 +141,13 @@ function handleCardDelete(card) {
 }
 
 function handleCardLike(cardId) {
-  this._cardLikeButton.classList.toggle("element__like-button_active");
-  const element = this._cardElement.querySelector(".element__like-button");
-  if (element.classList.contains("element__like-button_active")) {
-    api.likeCard(cardId);
+  // const element = this._cardElement.querySelector(".element__like-button");
+  if (this.checkIfLikeActive()) {
+    api.likeCard(cardId).then((res) => {
+      this.toggleCardLikeButton();
+    });
   } else {
-    api.dislikeCard(cardId);
+    api.dislikeCard(cardId).then((res) => this.toggleCardLikeButton());
   }
 }
 
