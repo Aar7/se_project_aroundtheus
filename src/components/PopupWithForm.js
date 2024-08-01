@@ -36,10 +36,6 @@ export default class PopupWithForm extends Popup {
     return inputValues;
   }
 
-  resetButtonText(buttonText) {
-    this._popupElement.querySelector(".modal__save").textContent = buttonText;
-  }
-
   /**
    * Adds an event listener to the popup according
    * to the event handler function passed to the

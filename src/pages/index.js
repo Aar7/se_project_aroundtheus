@@ -125,11 +125,15 @@ function handleNewCardSubmit(data, formElement) {
 }
 function handleCardDeleteListener(card) {
   renderLoading(".modal__delete-button");
-  api.deleteCard(card.getId()).finally((res) => {
-    deleteCardPopup.close();
-    card.removeCard();
-    document.querySelector(".modal__delete-button").textContent = "Yes";
-  });
+  api
+    .deleteCard(card.getId())
+    .then((res) => {
+      deleteCardPopup.close();
+      card.removeCard();
+    })
+    .finally((res) => {
+      deleteCardPopup.resetButtonText("Yes");
+    });
 }
 
 function handleCardDelete(card) {
