@@ -36,6 +36,10 @@ export default class PopupWithForm extends Popup {
     return inputValues;
   }
 
+  resetButtonText(buttonText) {
+    this._popupElement.querySelector(".modal__save").textContent = buttonText;
+  }
+
   /**
    * Adds an event listener to the popup according
    * to the event handler function passed to the
@@ -47,7 +51,6 @@ export default class PopupWithForm extends Popup {
     this._popupElement.addEventListener("submit", (event) => {
       this._handleSubmit(this._getInputValues(), this._formElement);
       event.preventDefault();
-      // event.target.reset();
     });
     super.setEventListeners();
   }

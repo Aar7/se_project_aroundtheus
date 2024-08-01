@@ -90,17 +90,19 @@ function handleImageClick(cardImage, cardName) {
  * @param {Array} data
  */
 function handleProfileSubmit(data, formElement) {
-  profileInfo.setUserInfo(data);
   console.log(data);
   api
     .editProfile(data)
     .then((res) => {
+      profileInfo.setUserInfo(data);
       formElement.reset();
       renderLoading();
     })
     .then((res) => {
       editProfilePopup.close();
-      this._popupElement.querySelector(".modal__save").textContent = "Save";
+    })
+    .finally((res) => {
+      editProfilePopup.resetButtonText("Save");
     });
 }
 
@@ -118,7 +120,7 @@ function handleNewCardSubmit(data, formElement) {
     })
     .then((res) => renderLoading())
     .finally((res) => {
-      this._popupElement.querySelector(".modal__save").textContent = "Save";
+      addNewCardPopup.resetButtonText("Create");
     });
 }
 function handleCardDeleteListener(card) {
@@ -151,9 +153,9 @@ function handleCardLike(cardId) {
 function handleAvatarSubmit(data, formElement) {
   api.avatarChange(data).then((res) => {
     formElement.reset();
+    editAvatarPopup.close();
+    profileInfo.setAvatar(profileImg, data.avatarLink);
   });
-  editAvatarPopup.close();
-  profileInfo.setAvatar(profileImg, data.avatarLink);
 }
 
 /**
