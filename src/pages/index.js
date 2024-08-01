@@ -43,7 +43,8 @@ const deleteCardPopup = new PopupWithDelete(
 
 const profileInfo = new UserInfo(
   ".profile__profile-heading",
-  ".profile__subtitle"
+  ".profile__subtitle",
+  ".profile__avatar"
 );
 
 const api = new Api({
@@ -55,9 +56,10 @@ const api = new Api({
 });
 
 api.getUserInformation().then((data) => {
-  sectionProfileInfoHeading.textContent = data.name;
-  sectionProfileInfoSubtitle.textContent = data.about;
-  profileImg.src = data.avatar;
+  const userName = data.name;
+  const aboutMe = data.about;
+  profileInfo.setUserInfo({ userName, aboutMe });
+  profileInfo.setAvatar(profileImg, data.avatar);
 });
 
 let section;
@@ -89,6 +91,7 @@ function handleImageClick(cardImage, cardName) {
  */
 function handleProfileSubmit(data, formElement) {
   profileInfo.setUserInfo(data);
+  console.log(data);
   api
     .editProfile(data)
     .then((res) => {
@@ -150,7 +153,7 @@ function handleAvatarSubmit(data, formElement) {
     formElement.reset();
   });
   editAvatarPopup.close();
-  profileImg.src = data.avatarLink;
+  profileInfo.setAvatar(profileImg, data.avatarLink);
 }
 
 /**

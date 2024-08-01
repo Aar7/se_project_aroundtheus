@@ -9,9 +9,10 @@
  * `aboutMe` fields, and sets them to the page
  */
 export default class UserInfo {
-  constructor(nameSelector, aboutMeSelector) {
+  constructor(nameSelector, aboutMeSelector, avatarSelector) {
     this._nameElement = document.querySelector(nameSelector);
     this._aboutMeElement = document.querySelector(aboutMeSelector);
+    this._avatarElement = document.querySelector(avatarSelector);
   }
 
   /**
@@ -24,6 +25,10 @@ export default class UserInfo {
       userAbout: this._aboutMeElement.textContent,
     };
     return userInfo;
+  }
+
+  setAvatar(profileImg, avatarLink) {
+    profileImg.src = avatarLink;
   }
 
   /**

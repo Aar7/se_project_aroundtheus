@@ -26,12 +26,18 @@ export default class Api {
    * @returns object containing user 'name' and 'about'
    */
   async getUserInformation() {
-    const res = await fetch(`${this._baseUrl}users/me`, this._options);
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Error <code>: ${res.status}`);
-    }
+    return fetch(`${this._baseUrl}users/me`, this._options)
+      .then((res) => {
+        if (res.ok) {
+          console.log(res);
+          return res.json();
+        } else {
+          return Promise.reject(`Error: ${res.status} (${res.statusText})`);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   /**
@@ -48,11 +54,11 @@ export default class Api {
           console.log("Initial cards", res);
           return res.json();
         } else {
-          return Promise.reject(`Error <code>: ${res.status}`);
+          return Promise.reject(`Error: ${res.status} (${res.statusText})`);
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   }
 
@@ -63,19 +69,24 @@ export default class Api {
    */
   async editProfile({ userName, aboutMe }) {
     console.warn("editProfile() ran");
-    const res = await fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         name: userName,
         about: aboutMe,
       }),
-    });
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Error <code>: ${res.status}`);
-    }
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(`Error: ${res.status} (${res.statusText})`);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   /**
@@ -110,62 +121,77 @@ export default class Api {
 
   async deleteCard(cardId) {
     console.warn("deleteCard() ran");
-    const res = fetch(`${this._baseUrl}cards/${cardId}`, {
+    return fetch(`${this._baseUrl}cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    });
-    if (res.ok) {
-      return res.json();
-    } else {
-      return Promise.reject(`Error <code>: ${res.status}`);
-    }
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(`Error <code>: ${res.status}`);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   async likeCard(cardId) {
     console.warn("likeCard() ran");
-    const res = fetch(`${this._baseUrl}cards/${cardId}/likes`, {
+    return fetch(`${this._baseUrl}cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
       body: JSON.stringify({
         _isLiked: true,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(`Error <code>: ${res.status}`);
-      }
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(`Error <code>: ${res.status}`);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   async dislikeCard(cardId) {
     console.warn("dislikeCard() ran");
-    const res = fetch(`${this._baseUrl}cards/${cardId}/likes`, {
+    return fetch(`${this._baseUrl}cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(`Error <code>: ${res.status}`);
-      }
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(`Error <code>: ${res.status}`);
+        }
+      })
+      .catch((error) => console.error(error));
   }
 
   async avatarChange(data) {
     console.warn("avatarChange() ran");
-    const res = fetch(`${this._baseUrl}users/me/avatar`, {
+    return fetch(`${this._baseUrl}users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
         avatar: data.avatarLink,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(`Error <code>: ${res.status}`);
-      }
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(`Error <code>: ${res.status}`);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 }
