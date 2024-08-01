@@ -20,7 +20,6 @@ import PopupWithDelete from "../components/PopupWithDelete.js";
 
 const headerImg = document.getElementById("header-image");
 headerImg.src = headerImgSrc;
-const profileImg = document.getElementById("profile-image");
 
 // CLASS INITIALISATIONS CLASS INITIALISATIONS CLASS INITIALISATIONS CLASS INITIALISATIONS
 const popupImage = new PopupWithImage("#open-card-modal");
@@ -59,7 +58,7 @@ api.getUserInformation().then((data) => {
   const userName = data.name;
   const aboutMe = data.about;
   profileInfo.setUserInfo({ userName, aboutMe });
-  profileInfo.setAvatar(profileImg, data.avatar);
+  profileInfo.setAvatar(data.avatar);
 });
 
 let section;
@@ -152,7 +151,7 @@ function handleAvatarSubmit(data, formElement) {
   api.avatarChange(data).then((res) => {
     formElement.reset();
     editAvatarPopup.close();
-    profileInfo.setAvatar(profileImg, data.avatarLink);
+    profileInfo.setAvatar(data.avatarLink);
   });
 }
 
