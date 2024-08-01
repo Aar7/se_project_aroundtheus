@@ -5,6 +5,8 @@ export default class PopupWithDelete extends Popup {
     super(popupSelector);
     this._handleConfirm = handleConfirm;
     this._handleDeleteListener = handleCardDeleteListener;
+    this._submitButton = this._popupElement.querySelector(".modal__save");
+    this._submitButtonText = this._submitButton.textContent;
 
     this._confirmButton = this._popupElement.querySelector(
       ".modal__delete-button"
@@ -17,6 +19,14 @@ export default class PopupWithDelete extends Popup {
     });
 
     super.setEventListeners();
+  }
+
+  renderLoading(isLoading, loadingText = "Saving...") {
+    if (isLoading) {
+      this._submitButton.textContent = loadingText;
+    } else {
+      this._submitButton.textContent = this._submitButtonText;
+    }
   }
 
   open(cardObject) {

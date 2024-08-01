@@ -72,9 +72,6 @@ api.getInitialCards().then((cards) => {
 });
 
 // FUNCTIONS FUNCTIONS FUNCTIONS FUNCTIONS
-function renderLoading(buttonElementId = ".modal__save") {
-  document.querySelector(buttonElementId).textContent = "Saving...";
-}
 /**
  * Opens the image preview modal
  * @param {DOM Element} cardImage the DOM Element with the card's image
@@ -91,7 +88,7 @@ function handleImageClick(cardImage, cardName) {
  */
 function handleProfileSubmit(data, formElement) {
   console.log(data);
-  renderLoading();
+  editProfilePopup.renderLoading(true);
   api
     .editProfile(data)
     .then((res) => {
@@ -102,12 +99,13 @@ function handleProfileSubmit(data, formElement) {
       editProfilePopup.close();
     })
     .finally((res) => {
-      editProfilePopup.resetButtonText("Save");
+      // editProfilePopup.resetButtonText("Save");
+      editProfilePopup.renderLoading(false);
     });
 }
 
 function handleNewCardSubmit(data, formElement) {
-  renderLoading();
+  addNewCardPopup.renderLoading(true);
   api
     .createCard(data)
     .then((result) => {
@@ -120,11 +118,11 @@ function handleNewCardSubmit(data, formElement) {
       formElement.reset();
     })
     .finally((res) => {
-      addNewCardPopup.resetButtonText("Create");
+      addNewCardPopup.renderLoading(false);
     });
 }
 function handleCardDeleteListener(card) {
-  renderLoading(".modal__delete-button");
+  deleteCardPopup.renderLoading(true);
   api
     .deleteCard(card.getId())
     .then((res) => {
@@ -132,7 +130,7 @@ function handleCardDeleteListener(card) {
       card.removeCard();
     })
     .finally((res) => {
-      deleteCardPopup.resetButtonText("Yes");
+      deleteCardPopup.renderLoading(false);
     });
 }
 
