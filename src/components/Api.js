@@ -13,7 +13,7 @@ export default class Api {
   }
 
   async _checkResponse(res) {
-    console.log("res from checkresponse(): ", res);
+    // console.log("res from checkresponse(): ", res);
     if (res.ok) {
       return res.json();
     }
@@ -27,14 +27,7 @@ export default class Api {
    */
   async getUserInformation() {
     return fetch(`${this._baseUrl}users/me`, this._options)
-      .then((res) => {
-        if (res.ok) {
-          console.log(res);
-          return res.json();
-        } else {
-          return Promise.reject(`Error: ${res.status} (${res.statusText})`);
-        }
-      })
+      .then(this._checkResponse)
       .catch((error) => {
         console.error(error);
       });
@@ -49,14 +42,7 @@ export default class Api {
   async getInitialCards() {
     console.warn("getInitialCards() ran");
     return fetch(`${this._baseUrl}/cards`, { headers: this._headers })
-      .then((res) => {
-        if (res.ok) {
-          console.log("Initial cards", res);
-          return res.json();
-        } else {
-          return Promise.reject(`Error: ${res.status} (${res.statusText})`);
-        }
-      })
+      .then(this._checkResponse)
       .catch((error) => {
         console.error(error);
       });
@@ -77,13 +63,7 @@ export default class Api {
         about: aboutMe,
       }),
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Error: ${res.status} (${res.statusText})`);
-        }
-      })
+      .then(this._checkResponse)
       .catch((error) => {
         console.error(error);
       });
@@ -103,12 +83,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({ name: name, link: link }),
     })
-      .then((res) => {
-        console.log("Fetch response:", res); // Log response
-        if (res.ok) {
-          return res.json();
-        }
-      })
+      .then(this._checkResponse)
       .then((data) => {
         console.log("Fetch data:", data); // Log data
         return data;
@@ -125,13 +100,7 @@ export default class Api {
       method: "DELETE",
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Error <code>: ${res.status}`);
-        }
-      })
+      .then(this._checkResponse)
       .catch((error) => {
         console.error(error);
       });
@@ -146,13 +115,7 @@ export default class Api {
         _isLiked: true,
       }),
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Error <code>: ${res.status}`);
-        }
-      })
+      .then(this._checkResponse)
       .catch((error) => {
         console.error(error);
       });
@@ -164,13 +127,7 @@ export default class Api {
       method: "DELETE",
       headers: this._headers,
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Error <code>: ${res.status}`);
-        }
-      })
+      .then(this._checkResponse)
       .catch((error) => console.error(error));
   }
 
@@ -183,13 +140,7 @@ export default class Api {
         avatar: data.avatarLink,
       }),
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(`Error <code>: ${res.status}`);
-        }
-      })
+      .then(this._checkResponse)
       .catch((error) => {
         console.error(error);
       });
