@@ -21,15 +21,18 @@
       </header>
       <main class="content">
         <section class="profile">
-          <img
-            id="profile-image"
-            alt="An image of Jacques Costeau"
-            class="profile__avatar"
-          />
+          <div class="profile__avatar-wrapper">
+            <img
+              id="profile-image"
+              alt="User profile image"
+              class="profile__avatar"
+            />
+            <div class="profile__edit"></div>
+          </div>
           <div class="profile__profile-info">
-            <h1 class="profile__profile-heading">Jacques Costeau</h1>
+            <h1 class="profile__profile-heading"></h1>
             <button type="button" class="profile__button-edit"></button>
-            <p class="profile__subtitle">Explorer</p>
+            <p class="profile__subtitle"></p>
           </div>
           <button type="button" class="profile__button-add"></button>
         </section>
@@ -114,8 +117,10 @@
               class="modal__input"
               id="card-title"
               type="text"
-              name="cardName"
+              name="title"
               placeholder="Title"
+              minlength="3"
+              maxlength="30"
               required
             />
             <span class="modal__error" id="card-title-error"></span>
@@ -148,6 +153,51 @@
         <button type="button" class="modal__close"></button>
         <img src="" alt="" class="modal__image" />
         <p class="modal__image-title"></p>
+      </div>
+    </div>
+    <!-- Delete card modal -->
+    <div class="modal" id="delete-card-modal" tabindex="-1">
+      <div class="modal__container">
+        <h2 class="modal__header modal__header_margin_value">Are you sure?</h2>
+        <button type="button" class="modal__close"></button>
+        <button
+          type="button"
+          class="modal__save modal__delete-button modal__save_margin_value"
+        >
+          Yes
+        </button>
+      </div>
+    </div>
+    <!-- Avatar change modal -->
+    <div class="modal" id="avatar-change-modal" tabindex="-1">
+      <div class="modal__container">
+        <h2 class="modal__header">Change Profile Picture</h2>
+        <button type="button" class="modal__close"></button>
+        <form
+          name="avatar_change_form"
+          class="modal__form"
+          id="avatar-change-form"
+        >
+          <label class="modal__label">
+            <input
+              class="modal__input"
+              id="profile-avatar-link"
+              type="url"
+              name="avatarLink"
+              placeholder="Image Link"
+              required
+            />
+            <span class="modal__error" id="profile-avatar-link-error"></span>
+          </label>
+          <button
+            id="edit-avatar-button"
+            type="submit"
+            class="modal__save modal__button_disabled"
+            disabled
+          >
+            Save
+          </button>
+        </form>
       </div>
     </div>
   </body>

@@ -1,18 +1,23 @@
-// Replaces functionality of getCardElement
 export default class Card {
-  // data: OBJECT with card tect and link to image
-  // cardSelector: selector STRING for the corresponding TEMPLATE element
-  // handleImageClick: FUNCTION handling the opening of the preview picture modal
-  constructor({ name, link }, cardSelector, handleImageClick) {
-    /* Creates and assigns _handleImageClick
-    the value handleImageClick
-    passed to the Card upon creation */
+  constructor(
+    { name, link },
+    cardSelector,
+    cardId,
+    cardLikeStatus,
+    handleImageClick,
+    handleDelete,
+    handleCardLike
+  ) {
     this._name = name;
     this._link = link;
+    this.cardId = cardId;
+    this._cardLikeStatus = cardLikeStatus;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._handleDelete = handleDelete;
+    this._handleLike = handleCardLike;
     this._cardElement = document
-      .querySelector(this._cardSelector)
+      .querySelector(cardSelector)
       .content.querySelector(".element")
       .cloneNode(true);
 
@@ -24,15 +29,17 @@ export default class Card {
     this._cardDeleteButton = this._cardElement.querySelector(
       ".element__delete-card-button"
     );
+    this._cardDeleteModal = document.getElementById("delete-card-modal");
   }
 
   _setEventListeners() {
     this._cardLikeButton.addEventListener("click", () => {
-      this._handleLike();
+      // this._handleLike(this._cardId);
+      this._handleLike(this);
     });
 
     this._cardDeleteButton.addEventListener("click", () => {
-      this._handleDelete();
+      this._handleDelete(this);
     });
 
     this._cardImage.addEventListener("click", () => {
@@ -40,20 +47,37 @@ export default class Card {
     });
   }
 
-  _handleDelete() {
-    this._cardElement.remove();
+  getId() {
+    return this.cardId;
   }
 
-  _handleLike() {
+  removeCard() {
+    this._cardElement.remove();
+    this._cardElement = null;
+  }
+
+  toggleCardLikeButton() {
     this._cardLikeButton.classList.toggle("element__like-button_active");
   }
 
-  // returnCard: returns fully functional Card class with appropriate data populated in it
+  checkIfLikeActive() {
+    if (
+      this._cardLikeButton.classList.contains("element__like-button_active")
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   returnCardElement() {
     this._setEventListeners();
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._cardName.textContent = this._name;
+    if (this._cardLikeStatus) {
+      this._cardLikeButton.classList.add("element__like-button_active");
+    }
 
     return this._cardElement;
   }

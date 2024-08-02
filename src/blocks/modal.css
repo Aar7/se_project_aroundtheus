@@ -40,6 +40,10 @@
   line-height: 30px;
 }
 
+/* .modal__header_align_margin {
+  margin-bottom: 0;
+} */
+
 .modal__close {
   position: absolute;
   padding: 0;
@@ -122,9 +126,13 @@
   cursor: pointer;
 }
 
-/* .modal__save:hover {
-  opacity: 0.8;
-} */
+.modal__save_margin_value {
+  margin: 0;
+}
+
+.modal__header_margin_value {
+  margin-bottom: 38px;
+}
 
 .modal__save:hover:not(:disabled) {
   opacity: 0.8;
