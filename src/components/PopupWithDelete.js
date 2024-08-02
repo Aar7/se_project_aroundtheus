@@ -7,14 +7,10 @@ export default class PopupWithDelete extends Popup {
     this._handleDeleteListener = handleCardDeleteListener;
     this._submitButton = this._popupElement.querySelector(".modal__save");
     this._submitButtonText = this._submitButton.textContent;
-
-    this._confirmButton = this._popupElement.querySelector(
-      ".modal__delete-button"
-    );
   }
 
   setEventListeners() {
-    this._confirmButton.addEventListener("click", () => {
+    this._submitButton.addEventListener("click", () => {
       this._handleDeleteListener(this._cardObject);
     });
 

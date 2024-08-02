@@ -2,10 +2,10 @@ import "./index.css";
 import headerImgSrc from "../images/header-image.svg";
 import Card from "../components/Card.js";
 import {
-  // formValidators,
-  addCardValidator,
-  editProfileValidator,
-  editAvatarValidator,
+  formValidators,
+  // addCardValidator,
+  // editProfileValidator,
+  // editAvatarValidator,
 } from "../scripts/validation.js";
 import Section from "../components/Section.js";
 import {
@@ -14,8 +14,6 @@ import {
   editButton,
   addCardButton,
   editAvatarButton,
-  sectionProfileInfoHeading,
-  sectionProfileInfoSubtitle,
 } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -59,7 +57,7 @@ const api = new Api({
   },
 });
 
-// console.log(formValidators);
+console.log(formValidators);
 
 api
   .getUserInformation()
@@ -180,9 +178,11 @@ function handleAvatarSubmit(data, formElement) {
       formElement.reset();
       editAvatarPopup.close();
       profileInfo.setAvatar(data.avatarLink);
-      editAvatarPopup.renderLoading(false);
     })
-    .catch(api.logError);
+    .catch(api.logError)
+    .finally((res) => {
+      editAvatarPopup.renderLoading(false);
+    });
 }
 
 /**
@@ -194,7 +194,6 @@ function renderCard(input, method = "append", cardId) {
   if (cardId == undefined) {
     cardId = input._id;
   }
-  console.log("inputssssss: ", input);
   const cardClass = new Card(
     { name: input.name || input.title, link: input.link },
     "#add-elements",
@@ -213,16 +212,16 @@ editButton.addEventListener("click", () => {
   editModalNameInput.value = userName;
   editModalAboutmeInput.value = userAbout;
   editProfilePopup.open();
-  editProfileValidator.resetValidation();
+  formValidators.edit_profile_form.resetValidation();
 });
 
 addCardButton.addEventListener("click", () => {
-  addCardValidator.toggleSubmitButtonState();
+  formValidators.add_card_form.toggleSubmitButtonState();
   addNewCardPopup.open();
 });
 
 editAvatarButton.addEventListener("click", () => {
-  editAvatarValidator.toggleSubmitButtonState();
+  formValidators.avatar_change_form.toggleSubmitButtonState();
   editAvatarPopup.open();
 });
 
